@@ -1,0 +1,398 @@
+{
+  "consecutive_failures": 0,
+  "last_heartbeat": "2026-08-17T03:43:14+00:00",
+  "cities": {
+    "Monza": {
+      "available": [
+        "Driver Scooter"
+      ],
+      "bike": false,
+      "slug": "monza"
+    },
+    "Brescia": {
+      "available": [
+        "Driver Scooter"
+      ],
+      "bike": false,
+      "slug": "brescia"
+    },
+    "Verona": {
+      "available": [
+        "Driver Scooter"
+      ],
+      "bike": false,
+      "slug": "verona"
+    },
+    "Milan": {
+      "available": [
+        "Driver Scooter"
+      ],
+      "bike": false,
+      "slug": "milan"
+    },
+    "Parma": {
+      "available": [
+        "Driver Car / Kombi",
+        "Driver Scooter"
+      ],
+      "bike": false,
+      "slug": "parma"
+    },
+    "Reggio Emilia": {
+      "available": [
+        "Driver Scooter"
+      ],
+      "bike": false,
+      "slug": "reggio-emilia"
+    },
+    "Trieste": {
+      "available": [
+        "Driver Scooter"
+      ],
+      "bike": false,
+      "slug": "trieste"
+    },
+    "Rimini": {
+      "available": [
+        "Driver Car / Kombi",
+        "Driver Scooter"
+      ],
+      "bike": false,
+      "slug": "rimini"
+    },
+    "Modena": {
+      "available": [
+        "Driver Car / Kombi",
+        "Driver Scooter"
+      ],
+      "bike": false,
+      "slug": "modena"
+    },
+    "La Spezia": {
+      "available": [
+        "Driver Car / Kombi",
+        "Driver Scooter"
+      ],
+      "bike": false,
+      "slug": "la-spezia"
+    },
+    "Florence": {
+      "available": [
+        "Driver Car / Kombi",
+        "Driver Scooter"
+      ],
+      "bike": false,
+      "slug": "florence"
+    },
+    "Cagliari": {
+      "available": [
+        "Driver Car / Kombi"
+      ],
+      "bike": false,
+      "slug": "cagliari"
+    },
+    "Rome": {
+      "available": [
+        "Company Scooter",
+        "Driver Scooter"
+      ],
+      "bike": false,
+      "slug": "rome"
+    },
+    "Bologna": {
+      "available": [
+        "Driver Scooter"
+      ],
+      "bike": false,
+      "slug": "bologna"
+    },
+    "Padua": {
+      "available": [
+        "Driver Scooter"
+      ],
+      "bike": false,
+      "slug": "padua"
+    },
+    "Catania": {
+      "available": [
+        "Driver Scooter"
+      ],
+      "bike": false,
+      "slug": "catania"
+    },
+    "Naples": {
+      "available": [
+        "Driver Scooter"
+      ],
+      "bike": false,
+      "slug": "naples"
+    },
+    "Ferrara": {
+      "available": [
+        "Driver Scooter"
+      ],
+      "bike": false,
+      "slug": "ferrara"
+    },
+    "Bari": {
+      "available": [
+        "Driver Car / Kombi",
+        "Driver Scooter"
+      ],
+      "bike": false,
+      "slug": "bari"
+    },
+    "Messina": {
+      "available": [
+        "Driver Scooter"
+      ],
+      "bike": false,
+      "slug": "messina"
+    },
+    "Turin": {
+      "available": [
+        "Driver Car / Kombi"
+      ],
+      "bike": false,
+      "slug": "turin"
+    },
+    "Pisa": {
+      "available": [
+        "Driver Scooter"
+      ],
+      "bike": false,
+      "slug": "pisa"
+    },
+    "Genoa": {
+      "available": [
+        "Driver Scooter"
+      ],
+      "bike": false,
+      "slug": "genoa"
+    },
+    "Palermo": {
+      "available": [
+        "Driver Scooter"
+      ],
+      "bike": false,
+      "slug": "palermo"
+    },
+    "Pescara": {
+      "available": [
+        "Driver Scooter"
+      ],
+      "bike": false,
+      "slug": "pescara"
+    },
+    "Novara": {
+      "available": [
+        "Driver Car / Kombi",
+        "Driver Scooter"
+      ],
+      "bike": false,
+      "slug": "novara"
+    },
+    "Livorno": {
+      "available": [
+        "Driver Scooter"
+      ],
+      "bike": false,
+      "slug": "livorno"
+    },
+    "Udine": {
+      "available": [
+        "Driver Scooter"
+      ],
+      "bike": false,
+      "slug": "udine"
+    },
+    "Ravenna": {
+      "available": [
+        "Driver Scooter"
+      ],
+      "bike": false,
+      "slug": "ravenna"
+    },
+    "Prato": {
+      "available": [
+        "Driver Scooter"
+      ],
+      "bike": false,
+      "slug": "prato"
+    },
+    "Pavia": {
+      "available": [
+        "Driver E-Bike"
+      ],
+      "bike": true,
+      "slug": "pavia"
+    },
+    "Salerno": {
+      "available": [
+        "Driver Scooter"
+      ],
+      "bike": false,
+      "slug": "salerno"
+    },
+    "Forlì": {
+      "available": [
+        "Driver Car / Kombi",
+        "Driver Scooter"
+      ],
+      "bike": false,
+      "slug": "forli"
+    },
+    "Mestre": {
+      "available": [
+        "Driver Car / Kombi",
+        "Driver Scooter"
+      ],
+      "bike": false,
+      "slug": "mestre"
+    },
+    "Perugia": {
+      "available": [
+        "Driver Car / Kombi",
+        "Driver Scooter"
+      ],
+      "bike": false,
+      "slug": "perugia"
+    },
+    "Bergamo": {
+      "available": [
+        "Driver Scooter"
+      ],
+      "bike": false,
+      "slug": "bergamo"
+    },
+    "Como": {
+      "available": [
+        "Driver Scooter"
+      ],
+      "bike": false,
+      "slug": "como"
+    },
+    "Sassari": {
+      "available": [
+        "Driver Car / Kombi",
+        "Driver Scooter"
+      ],
+      "bike": false,
+      "slug": "sassari"
+    },
+    "Trento": {
+      "available": [
+        "Driver Scooter"
+      ],
+      "bike": false,
+      "slug": "trento"
+    },
+    "Varese": {
+      "available": [
+        "Driver Scooter"
+      ],
+      "bike": false,
+      "slug": "varese"
+    },
+    "Piacenza": {
+      "available": [
+        "Driver Scooter"
+      ],
+      "bike": false,
+      "slug": "piacenza"
+    },
+    "Busto Arsizio": {
+      "available": [
+        "Driver Scooter"
+      ],
+      "bike": false,
+      "slug": "busto-arsizio"
+    },
+    "Lecce": {
+      "available": [
+        "Driver Scooter"
+      ],
+      "bike": false,
+      "slug": "lecce"
+    },
+    "Comuni Vesuviani": {
+      "available": [
+        "Driver Scooter"
+      ],
+      "bike": false,
+      "slug": "comuni-vesuviani"
+    },
+    "Fiumicino": {
+      "available": [
+        "Driver Car / Kombi"
+      ],
+      "bike": false,
+      "slug": "fiumicino"
+    },
+    "Ostia": {
+      "available": [
+        "Driver Scooter"
+      ],
+      "bike": false,
+      "slug": "ostia"
+    },
+    "Taranto": {
+      "available": [
+        "Driver Car / Kombi",
+        "Driver Scooter"
+      ],
+      "bike": false,
+      "slug": "taranto"
+    },
+    "Acilia": {
+      "available": [
+        "Driver Car / Kombi",
+        "Driver Scooter"
+      ],
+      "bike": false,
+      "slug": "acilia"
+    },
+    "Vicenza": {
+      "available": [
+        "Driver Car / Kombi",
+        "Driver Scooter"
+      ],
+      "bike": false,
+      "slug": "vicenza"
+    },
+    "Borghesiana": {
+      "available": [
+        "Driver Car / Kombi"
+      ],
+      "bike": false,
+      "slug": "borghesiana"
+    },
+    "Comuni della riviera di Riccione e Cattolica": {
+      "available": [
+        "Driver Car / Kombi",
+        "Driver E-Bike",
+        "Driver Scooter"
+      ],
+      "bike": true,
+      "slug": "comuni-della-riviera-di-riccione-e-cattolica"
+    },
+    "Milan North East": {
+      "available": [
+        "Driver Scooter"
+      ],
+      "bike": false,
+      "slug": "milan-north-east"
+    },
+    "Ciampino": {
+      "available": [
+        "Driver Bike",
+        "Driver Car / Kombi",
+        "Driver E-Bike",
+        "Driver Scooter"
+      ],
+      "bike": true,
+      "slug": "ciampino"
+    }
+  },
+  "last_check": "2026-08-17T03:43:14+00:00"
+}
