@@ -47,9 +47,9 @@
     },
     "Trieste": {
       "available": [
-        "Driver Scooter"
+        "Driver E-Bike"
       ],
-      "bike": false,
+      "bike": true,
       "slug": "trieste"
     },
     "Rimini": {
@@ -394,5 +394,5 @@
       "slug": "ciampino"
     }
   },
-  "last_check": "2026-08-17T07:04:54+00:00"
+  "last_check": "2026-08-17T08:08:39+00:00"
 }
