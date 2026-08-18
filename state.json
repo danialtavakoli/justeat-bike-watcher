@@ -108,9 +108,10 @@
     },
     "Padua": {
       "available": [
+        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "bike": false,
+      "bike": true,
       "slug": "padua"
     },
     "Catania": {
@@ -165,9 +166,10 @@
     },
     "Genoa": {
       "available": [
+        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "bike": false,
+      "bike": true,
       "slug": "genoa"
     },
     "Palermo": {
@@ -201,9 +203,10 @@
     },
     "Udine": {
       "available": [
+        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "bike": false,
+      "bike": true,
       "slug": "udine"
     },
     "Ravenna": {
@@ -395,5 +398,5 @@
       "slug": "ciampino"
     }
   },
-  "last_check": "2026-08-18T08:42:42+00:00"
+  "last_check": "2026-08-18T09:38:16+00:00"
 }
