@@ -40,6 +40,7 @@
     },
     "Reggio Emilia": {
       "available": [
+        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "bike": false,
@@ -201,9 +202,10 @@
     },
     "Udine": {
       "available": [
+        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "bike": false,
+      "bike": true,
       "slug": "udine"
     },
     "Ravenna": {
@@ -266,6 +268,7 @@
     },
     "Como": {
       "available": [
+        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "bike": false,
@@ -302,6 +305,7 @@
     },
     "Busto Arsizio": {
       "available": [
+        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "bike": false,
@@ -393,5 +397,5 @@
       "slug": "ciampino"
     }
   },
-  "last_check": "2026-08-19T13:51:03+00:00"
+  "last_check": "2026-08-19T14:38:41+00:00"
 }
