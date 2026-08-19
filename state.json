@@ -202,10 +202,9 @@
     },
     "Udine": {
       "available": [
-        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "bike": true,
+      "bike": false,
       "slug": "udine"
     },
     "Ravenna": {
@@ -397,5 +396,5 @@
       "slug": "ciampino"
     }
   },
-  "last_check": "2026-08-19T20:34:01+00:00"
+  "last_check": "2026-08-19T21:29:53+00:00"
 }
