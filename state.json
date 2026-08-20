@@ -304,7 +304,6 @@
     },
     "Busto Arsizio": {
       "available": [
-        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "bike": false,
@@ -396,5 +395,5 @@
       "slug": "ciampino"
     }
   },
-  "last_check": "2026-08-20T11:31:50+00:00"
+  "last_check": "2026-08-20T12:58:11+00:00"
 }
