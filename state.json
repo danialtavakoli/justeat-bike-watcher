@@ -267,6 +267,7 @@
     },
     "Como": {
       "available": [
+        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "bike": false,
@@ -289,9 +290,10 @@
     },
     "Varese": {
       "available": [
+        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "bike": false,
+      "bike": true,
       "slug": "varese"
     },
     "Piacenza": {
@@ -395,5 +397,5 @@
       "slug": "ciampino"
     }
   },
-  "last_check": "2026-08-21T14:40:04+00:00"
+  "last_check": "2026-08-21T15:38:45+00:00"
 }
