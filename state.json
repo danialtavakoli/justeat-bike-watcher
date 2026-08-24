@@ -1,6 +1,6 @@
 {
   "consecutive_failures": 0,
-  "last_heartbeat": "2026-08-23T05:03:21+00:00",
+  "last_heartbeat": "2026-08-24T05:19:35+00:00",
   "cities": {
     "Monza": {
       "available": [
@@ -394,5 +394,5 @@
       "slug": "ciampino"
     }
   },
-  "last_check": "2026-08-24T04:22:28+00:00"
+  "last_check": "2026-08-24T05:19:35+00:00"
 }
