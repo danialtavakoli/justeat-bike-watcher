@@ -269,7 +269,6 @@
     },
     "Como": {
       "available": [
-        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "bike": false,
@@ -398,5 +397,5 @@
       "slug": "ciampino"
     }
   },
-  "last_check": "2026-08-24T15:43:32+00:00"
+  "last_check": "2026-08-24T16:43:47+00:00"
 }
