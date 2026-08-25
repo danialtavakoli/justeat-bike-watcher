@@ -291,10 +291,9 @@
     },
     "Varese": {
       "available": [
-        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "bike": true,
+      "bike": false,
       "slug": "varese"
     },
     "Piacenza": {
@@ -397,5 +396,5 @@
       "slug": "ciampino"
     }
   },
-  "last_check": "2026-08-25T11:00:45+00:00"
+  "last_check": "2026-08-25T11:56:01+00:00"
 }
