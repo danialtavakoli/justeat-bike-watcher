@@ -40,10 +40,9 @@
     },
     "Reggio Emilia": {
       "available": [
-        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "bike": true,
+      "bike": false,
       "slug": "reggio-emilia"
     },
     "Trieste": {
@@ -95,7 +94,6 @@
     },
     "Rome": {
       "available": [
-        "Company Scooter",
         "Driver Scooter"
       ],
       "bike": false,
@@ -398,5 +396,5 @@
       "slug": "ciampino"
     }
   },
-  "last_check": "2026-09-01T17:23:43+00:00"
+  "last_check": "2026-09-01T20:05:26+00:00"
 }
