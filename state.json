@@ -40,9 +40,10 @@
     },
     "Reggio Emilia": {
       "available": [
+        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "bike": false,
+      "bike": true,
       "slug": "reggio-emilia"
     },
     "Trieste": {
@@ -102,6 +103,7 @@
     },
     "Bologna": {
       "available": [
+        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "bike": false,
@@ -166,7 +168,6 @@
     },
     "Genoa": {
       "available": [
-        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "bike": false,
@@ -211,9 +212,10 @@
     },
     "Ravenna": {
       "available": [
+        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "bike": false,
+      "bike": true,
       "slug": "ravenna"
     },
     "Prato": {
@@ -396,5 +398,5 @@
       "slug": "ciampino"
     }
   },
-  "last_check": "2026-09-01T13:20:27+00:00"
+  "last_check": "2026-09-01T17:23:43+00:00"
 }
