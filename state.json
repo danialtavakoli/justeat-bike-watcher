@@ -96,10 +96,9 @@
       "available": [
         "Company Scooter",
         "Driver Car / Kombi",
-        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "bike": true,
+      "bike": false,
       "slug": "rome"
     },
     "Bologna": {
@@ -396,5 +395,5 @@
       "slug": "ciampino"
     }
   },
-  "last_check": "2026-09-04T16:05:01+00:00"
+  "last_check": "2026-09-04T19:04:01+00:00"
 }
