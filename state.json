@@ -26,6 +26,7 @@
     },
     "Milan": {
       "available": [
+        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "bike": false,
@@ -80,10 +81,9 @@
     },
     "Florence": {
       "available": [
-        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "bike": true,
+      "bike": false,
       "slug": "florence"
     },
     "Cagliari": {
@@ -97,14 +97,14 @@
       "available": [
         "Company Scooter",
         "Driver Car / Kombi",
+        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "bike": false,
+      "bike": true,
       "slug": "rome"
     },
     "Bologna": {
       "available": [
-        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "bike": false,
@@ -169,6 +169,7 @@
     },
     "Genoa": {
       "available": [
+        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "bike": false,
@@ -190,6 +191,7 @@
     },
     "Novara": {
       "available": [
+        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "bike": false,
@@ -212,17 +214,17 @@
     "Ravenna": {
       "available": [
         "Driver Car / Kombi",
-        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "bike": true,
+      "bike": false,
       "slug": "ravenna"
     },
     "Prato": {
       "available": [
+        "Driver Bike",
         "Driver Scooter"
       ],
-      "bike": false,
+      "bike": true,
       "slug": "prato"
     },
     "Pavia": {
@@ -249,7 +251,7 @@
     },
     "Mestre": {
       "available": [
-        "Driver Scooter"
+        "Driver Car / Kombi"
       ],
       "bike": false,
       "slug": "mestre"
@@ -335,9 +337,10 @@
     },
     "Ostia": {
       "available": [
+        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "bike": false,
+      "bike": true,
       "slug": "ostia"
     },
     "Taranto": {
@@ -397,5 +400,5 @@
       "slug": "ciampino"
     }
   },
-  "last_check": "2026-09-07T13:24:13+00:00"
+  "last_check": "2026-09-07T18:20:35+00:00"
 }
