@@ -1,6 +1,6 @@
 {
   "consecutive_failures": 0,
-  "last_heartbeat": "2026-09-07T13:24:13+00:00",
+  "last_heartbeat": "2026-09-08T14:25:34+00:00",
   "cities": {
     "Monza": {
       "available": [
@@ -11,7 +11,6 @@
     },
     "Brescia": {
       "available": [
-        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "bike": false,
@@ -19,9 +18,10 @@
     },
     "Verona": {
       "available": [
+        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "bike": false,
+      "bike": true,
       "slug": "verona"
     },
     "Milan": {
@@ -249,7 +249,8 @@
     },
     "Mestre": {
       "available": [
-        "Driver Car / Kombi"
+        "Driver Car / Kombi",
+        "Driver Scooter"
       ],
       "bike": false,
       "slug": "mestre"
@@ -397,5 +398,5 @@
       "slug": "ciampino"
     }
   },
-  "last_check": "2026-09-08T09:59:27+00:00"
+  "last_check": "2026-09-08T14:25:34+00:00"
 }
