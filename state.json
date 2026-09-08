@@ -18,15 +18,13 @@
     },
     "Verona": {
       "available": [
-        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "bike": true,
+      "bike": false,
       "slug": "verona"
     },
     "Milan": {
       "available": [
-        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "bike": false,
@@ -34,6 +32,7 @@
     },
     "Parma": {
       "available": [
+        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "bike": false,
@@ -96,10 +95,9 @@
       "available": [
         "Company Scooter",
         "Driver Car / Kombi",
-        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "bike": true,
+      "bike": false,
       "slug": "rome"
     },
     "Bologna": {
@@ -398,5 +396,5 @@
       "slug": "ciampino"
     }
   },
-  "last_check": "2026-09-08T14:25:34+00:00"
+  "last_check": "2026-09-08T18:01:22+00:00"
 }
