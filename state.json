@@ -34,7 +34,6 @@
     },
     "Parma": {
       "available": [
-        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "bike": false,
@@ -399,5 +398,5 @@
       "slug": "ciampino"
     }
   },
-  "last_check": "2026-09-08T00:05:51+00:00"
+  "last_check": "2026-09-08T05:03:45+00:00"
 }
