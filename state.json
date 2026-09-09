@@ -219,10 +219,9 @@
     },
     "Prato": {
       "available": [
-        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "bike": true,
+      "bike": false,
       "slug": "prato"
     },
     "Pavia": {
@@ -302,10 +301,9 @@
     },
     "Piacenza": {
       "available": [
-        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "bike": true,
+      "bike": false,
       "slug": "piacenza"
     },
     "Busto Arsizio": {
@@ -402,5 +400,5 @@
       "slug": "ciampino"
     }
   },
-  "last_check": "2026-09-09T20:45:49+00:00"
+  "last_check": "2026-09-09T23:06:06+00:00"
 }
