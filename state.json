@@ -4,16 +4,20 @@
   "cities": {
     "Monza": {
       "available": [
+        "Driver Car / Kombi",
+        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "bike": false,
+      "bike": true,
       "slug": "monza"
     },
     "Brescia": {
       "available": [
+        "Driver Car / Kombi",
+        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "bike": false,
+      "bike": true,
       "slug": "brescia"
     },
     "Verona": {
@@ -25,9 +29,11 @@
     },
     "Milan": {
       "available": [
+        "Driver Car / Kombi",
+        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "bike": false,
+      "bike": true,
       "slug": "milan"
     },
     "Parma": {
@@ -225,7 +231,8 @@
     },
     "Pavia": {
       "available": [
-        "Driver E-Bike"
+        "Driver E-Bike",
+        "Driver Scooter"
       ],
       "bike": true,
       "slug": "pavia"
@@ -262,6 +269,7 @@
     },
     "Bergamo": {
       "available": [
+        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "bike": false,
@@ -269,6 +277,7 @@
     },
     "Como": {
       "available": [
+        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "bike": false,
@@ -284,6 +293,7 @@
     },
     "Trento": {
       "available": [
+        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "bike": false,
@@ -291,9 +301,10 @@
     },
     "Varese": {
       "available": [
+        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "bike": false,
+      "bike": true,
       "slug": "varese"
     },
     "Piacenza": {
@@ -305,7 +316,7 @@
     },
     "Busto Arsizio": {
       "available": [
-        "Driver Scooter"
+        "Driver Car / Kombi"
       ],
       "bike": false,
       "slug": "busto-arsizio"
@@ -342,9 +353,10 @@
     "Taranto": {
       "available": [
         "Driver Car / Kombi",
+        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "bike": false,
+      "bike": true,
       "slug": "taranto"
     },
     "Acilia": {
@@ -396,5 +408,5 @@
       "slug": "ciampino"
     }
   },
-  "last_check": "2026-09-09T09:05:51+00:00"
+  "last_check": "2026-09-09T13:50:29+00:00"
 }
