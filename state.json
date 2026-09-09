@@ -1,23 +1,21 @@
 {
   "consecutive_failures": 0,
-  "last_heartbeat": "2026-09-08T14:25:34+00:00",
+  "last_heartbeat": "2026-09-09T17:43:45+00:00",
   "cities": {
     "Monza": {
       "available": [
         "Driver Car / Kombi",
-        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "bike": true,
+      "bike": false,
       "slug": "monza"
     },
     "Brescia": {
       "available": [
         "Driver Car / Kombi",
-        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "bike": true,
+      "bike": false,
       "slug": "brescia"
     },
     "Verona": {
@@ -30,15 +28,13 @@
     "Milan": {
       "available": [
         "Driver Car / Kombi",
-        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "bike": true,
+      "bike": false,
       "slug": "milan"
     },
     "Parma": {
       "available": [
-        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "bike": false,
@@ -68,10 +64,10 @@
     },
     "Modena": {
       "available": [
-        "Driver Car / Kombi",
+        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "bike": false,
+      "bike": true,
       "slug": "modena"
     },
     "La Spezia": {
@@ -122,9 +118,9 @@
     },
     "Catania": {
       "available": [
-        "Driver Scooter"
+        "Driver E-Bike"
       ],
-      "bike": false,
+      "bike": true,
       "slug": "catania"
     },
     "Naples": {
@@ -180,9 +176,9 @@
     },
     "Palermo": {
       "available": [
-        "Driver Scooter"
+        "Driver E-Bike"
       ],
-      "bike": false,
+      "bike": true,
       "slug": "palermo"
     },
     "Pescara": {
@@ -224,17 +220,17 @@
     },
     "Prato": {
       "available": [
-        "Driver Scooter"
-      ],
-      "bike": false,
-      "slug": "prato"
-    },
-    "Pavia": {
-      "available": [
         "Driver E-Bike",
         "Driver Scooter"
       ],
       "bike": true,
+      "slug": "prato"
+    },
+    "Pavia": {
+      "available": [
+        "Driver Scooter"
+      ],
+      "bike": false,
       "slug": "pavia"
     },
     "Salerno": {
@@ -246,7 +242,6 @@
     },
     "Forlì": {
       "available": [
-        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "bike": false,
@@ -269,7 +264,6 @@
     },
     "Bergamo": {
       "available": [
-        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "bike": false,
@@ -309,9 +303,10 @@
     },
     "Piacenza": {
       "available": [
+        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "bike": false,
+      "bike": true,
       "slug": "piacenza"
     },
     "Busto Arsizio": {
@@ -408,5 +403,5 @@
       "slug": "ciampino"
     }
   },
-  "last_check": "2026-09-09T13:50:29+00:00"
+  "last_check": "2026-09-09T17:43:45+00:00"
 }
