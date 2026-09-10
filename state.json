@@ -49,9 +49,10 @@
     },
     "Trieste": {
       "available": [
+        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "bike": false,
+      "bike": true,
       "slug": "trieste"
     },
     "Rimini": {
@@ -95,6 +96,7 @@
     "Rome": {
       "available": [
         "Company Scooter",
+        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "bike": false,
@@ -211,10 +213,10 @@
     },
     "Ravenna": {
       "available": [
-        "Driver Car / Kombi",
+        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "bike": false,
+      "bike": true,
       "slug": "ravenna"
     },
     "Prato": {
@@ -247,8 +249,7 @@
     },
     "Mestre": {
       "available": [
-        "Driver Car / Kombi",
-        "Driver Scooter"
+        "Driver Car / Kombi"
       ],
       "bike": false,
       "slug": "mestre"
@@ -262,6 +263,7 @@
     },
     "Bergamo": {
       "available": [
+        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "bike": false,
@@ -293,9 +295,10 @@
     },
     "Varese": {
       "available": [
+        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "bike": false,
+      "bike": true,
       "slug": "varese"
     },
     "Piacenza": {
@@ -344,8 +347,7 @@
     "Taranto": {
       "available": [
         "Driver Car / Kombi",
-        "Driver E-Bike",
-        "Driver Scooter"
+        "Driver E-Bike"
       ],
       "bike": true,
       "slug": "taranto"
@@ -399,5 +401,5 @@
       "slug": "ciampino"
     }
   },
-  "last_check": "2026-09-10T12:08:22+00:00"
+  "last_check": "2026-09-10T16:37:15+00:00"
 }
