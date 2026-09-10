@@ -95,7 +95,6 @@
     "Rome": {
       "available": [
         "Company Scooter",
-        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "bike": false,
@@ -400,5 +399,5 @@
       "slug": "ciampino"
     }
   },
-  "last_check": "2026-09-09T23:06:06+00:00"
+  "last_check": "2026-09-10T01:20:55+00:00"
 }
