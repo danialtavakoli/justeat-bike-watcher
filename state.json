@@ -12,6 +12,7 @@
     },
     "Brescia": {
       "available": [
+        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "bike": false,
@@ -95,9 +96,10 @@
       "available": [
         "Company Scooter",
         "Driver Car / Kombi",
+        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "bike": false,
+      "bike": true,
       "slug": "rome"
     },
     "Bologna": {
@@ -189,7 +191,6 @@
     },
     "Novara": {
       "available": [
-        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "bike": false,
@@ -292,16 +293,18 @@
     },
     "Varese": {
       "available": [
+        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "bike": false,
+      "bike": true,
       "slug": "varese"
     },
     "Piacenza": {
       "available": [
+        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "bike": false,
+      "bike": true,
       "slug": "piacenza"
     },
     "Busto Arsizio": {
@@ -334,15 +337,13 @@
     },
     "Ostia": {
       "available": [
-        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "bike": true,
+      "bike": false,
       "slug": "ostia"
     },
     "Taranto": {
       "available": [
-        "Driver Car / Kombi",
         "Driver E-Bike"
       ],
       "bike": true,
@@ -381,6 +382,7 @@
     },
     "Milan North East": {
       "available": [
+        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "bike": false,
@@ -397,5 +399,5 @@
       "slug": "ciampino"
     }
   },
-  "last_check": "2026-09-11T13:26:12+00:00"
+  "last_check": "2026-09-11T17:07:32+00:00"
 }
