@@ -1,6 +1,6 @@
 {
   "consecutive_failures": 0,
-  "last_heartbeat": "2026-09-10T19:29:33+00:00",
+  "last_heartbeat": "2026-09-11T19:58:13+00:00",
   "cities": {
     "Monza": {
       "available": [
@@ -96,10 +96,9 @@
       "available": [
         "Company Scooter",
         "Driver Car / Kombi",
-        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "bike": true,
+      "bike": false,
       "slug": "rome"
     },
     "Bologna": {
@@ -399,5 +398,5 @@
       "slug": "ciampino"
     }
   },
-  "last_check": "2026-09-11T17:07:32+00:00"
+  "last_check": "2026-09-11T19:58:13+00:00"
 }
