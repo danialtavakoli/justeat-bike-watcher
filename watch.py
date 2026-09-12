@@ -34,6 +34,7 @@ Usage
 -----
     python watch.py --list              # every city, both signals
     python watch.py --diagnose Genoa    # full detail for one city
+    python watch.py --history Genoa     # every recorded open/close episode
     python watch.py --test-telegram     # verify token/chat id
     python watch.py --once              # single check (use from cron/Actions)
     python watch.py --once --poll 50    # keep checking for 50 minutes, then exit
@@ -66,6 +67,9 @@ HERE = Path(__file__).parent
 CONFIG_PATH = HERE / "config.json"
 STATE_PATH = HERE / "state.json"
 LOG_PATH = HERE / "watch.log"
+# Append-only record of every open/close, so the answer to "when was it open?"
+# is one file rather than a script that replays hundreds of state commits.
+HISTORY_PATH = HERE / "history.jsonl"
 
 # Overridable so selftest.py can point at a local fixture.
 FORM_URL = os.environ.get("JE_FORM_URL", "https://www.justeat.it/en/courier/form")
@@ -355,6 +359,61 @@ def send_telegram(cfg: dict, text: str) -> bool:
         return False
 
 
+# -------------------------------------------------------------------- history
+
+
+def history_event(kind: str, info: dict, key: str, hit: dict, label: str,
+                  watching: bool, gap_hours: float | None, when: datetime,
+                  origin: str = "live") -> dict:
+    """One line of history.jsonl. Field order is the reading order."""
+    source = "dropdown" if hit["dropdown"] else ("advert" if hit["postings"] else None)
+    return {
+        "ts": when.isoformat(timespec="seconds"),
+        "event": kind,                       # first_seen | opened | closed
+        "city": info["name"],
+        "match": label,
+        "open": hit["open"],
+        "source": source,                    # which signal carried it
+        "matched": hit["dropdown"] or [p["vehicle"] for p in hit["postings"]],
+        "dropdown": info["dropdown"],
+        "postings": info["postings"],
+        "watched": watching,
+        # How long since the previous check: an "opened" seen after a 5h gap
+        # means it opened somewhere in those 5 hours, not at this timestamp.
+        "gap_hours": None if gap_hours is None else round(gap_hours, 2),
+        "slug": info["slug"],
+        "key": key,
+        "origin": origin,                    # live | backfill
+    }
+
+
+def append_history(events: list[dict]) -> None:
+    """Never let bookkeeping break a check."""
+    if not events:
+        return
+    try:
+        with HISTORY_PATH.open("a", encoding="utf-8") as fh:
+            for e in events:
+                fh.write(json.dumps(e, ensure_ascii=False) + "\n")
+    except OSError as exc:
+        log(f"could not append to {HISTORY_PATH.name}: {exc}")
+
+
+def read_history() -> list[dict]:
+    if not HISTORY_PATH.exists():
+        return []
+    out = []
+    for line in HISTORY_PATH.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if not line:
+            continue
+        try:
+            out.append(json.loads(line))
+        except json.JSONDecodeError:
+            continue          # a torn last line must not lose the whole file
+    return out
+
+
 # --------------------------------------------------------------------- alerts
 
 
@@ -425,6 +484,14 @@ def check_once(cfg: dict) -> int:
     posting_counts = bool(cfg.get("alert_on_job_posting"))
     prev = state.get("cities") or {}
     messages: list[str] = []
+    events: list[dict] = []
+
+    gap_hours = None
+    if state.get("last_check"):
+        try:
+            gap_hours = (now - datetime.fromisoformat(state["last_check"])).total_seconds() / 3600
+        except ValueError:
+            pass
 
     for key, info in sorted(data.items(), key=lambda kv: kv[1]["name"]):
         watching = is_watched(info, watched)
@@ -436,6 +503,16 @@ def check_once(cfg: dict) -> int:
         known_before = bool(before)
         open_before = known_before and previous_hits(pattern, before, posting_counts)["open"]
         offered_before = before.get("offered", before.get("available"))
+
+        # History covers every city, not just the watched ones — transitions are
+        # rare, so the file stays small and answers "when was it open anywhere?"
+        if not known_before:
+            if watching or hit["open"]:
+                events.append(history_event("first_seen", info, key, hit, label,
+                                            watching, gap_hours, now))
+        elif hit["open"] != open_before:
+            events.append(history_event("opened" if hit["open"] else "closed",
+                                        info, key, hit, label, watching, gap_hours, now))
 
         if watching and hit["open"] and not open_before:
             messages.append(open_message(info, hit, label))
@@ -466,6 +543,11 @@ def check_once(cfg: dict) -> int:
                 f"🚲 {label.title()} opened in <b>{info['name']}</b> "
                 f'(not a city you watch)\n<a href="{link}">Apply</a>'
             )
+
+    append_history(events)
+    for e in events:
+        log(f"history: {e['city']} {e['event']}"
+            + (f" via {e['source']} ({', '.join(e['matched'])})" if e["source"] else ""))
 
     for msg in messages:
         send_telegram(cfg, msg)
@@ -551,6 +633,52 @@ def cmd_list(cfg: dict) -> int:
     return 0
 
 
+def cmd_history(cfg: dict, wanted: str | None) -> int:
+    """Readable view of history.jsonl, paired into episodes with durations."""
+    rows = read_history()
+    if wanted:
+        w = wanted.lower()
+        rows = [r for r in rows if w in (r.get("city", "").lower(), r.get("slug", "").lower())]
+    if not rows:
+        print("No history recorded yet."
+              + (f" (nothing for {wanted!r})" if wanted else ""))
+        return 1
+
+    by_city: dict[str, list[dict]] = {}
+    for r in rows:
+        by_city.setdefault(r.get("city", "?"), []).append(r)
+
+    for city, entries in sorted(by_city.items()):
+        entries.sort(key=lambda r: r["ts"])
+        print(f"\n{city}")
+        opened_at = None
+        for r in entries:
+            when = r["ts"].replace("+00:00", "Z")
+            gap = r.get("gap_hours")
+            fuzz = f"  (opened within the previous {gap}h)" if gap else ""
+            if r["event"] in ("opened", "first_seen") and r.get("open"):
+                print(f"  OPEN   {when}  {', '.join(r['matched']) or '?'}"
+                      f"  [{r.get('source') or '?'}]{fuzz}")
+                opened_at = r["ts"]
+            elif r["event"] == "closed":
+                dur = ""
+                if opened_at:
+                    try:
+                        hours = (datetime.fromisoformat(r["ts"])
+                                 - datetime.fromisoformat(opened_at)).total_seconds() / 3600
+                        dur = f"  — open for at least {hours:.1f}h"
+                    except ValueError:
+                        pass
+                print(f"  CLOSE  {when}{dur}")
+                opened_at = None
+            elif r["event"] == "first_seen":
+                print(f"  start  {when}  watching, currently closed")
+        if opened_at:
+            print("  ...still open as of the last recorded check")
+    print(f"\n{len(rows)} events in {HISTORY_PATH.name}.")
+    return 0
+
+
 def cmd_diagnose(cfg: dict, wanted: str) -> int:
     pattern = vehicle_matcher(cfg)
     posting_counts = bool(cfg.get("alert_on_job_posting"))
@@ -596,6 +724,8 @@ def main() -> int:
     ap = argparse.ArgumentParser(description="Just Eat e-bike slot Telegram watcher")
     ap.add_argument("--list", action="store_true", help="print all cities and exit")
     ap.add_argument("--diagnose", metavar="CITY", help="show both signals for one city")
+    ap.add_argument("--history", nargs="?", const="", metavar="CITY",
+                    help="print recorded open/close episodes (optionally one city)")
     ap.add_argument("--once", action="store_true", help="check once and exit (for cron)")
     ap.add_argument("--poll", type=float, metavar="MINUTES", default=0.0,
                     help="with --once: keep re-checking for this many minutes before "
@@ -618,6 +748,9 @@ def main() -> int:
 
     if args.list:
         return cmd_list(cfg)
+
+    if args.history is not None:
+        return cmd_history(cfg, args.history or None)
 
     if args.diagnose:
         return cmd_diagnose(cfg, args.diagnose)

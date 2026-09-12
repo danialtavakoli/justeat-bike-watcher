@@ -39,11 +39,13 @@ jobs:
         # hour — which is what the 18 Aug window looked like — now gets seen.
         run: python watch.py --once --poll 50 --poll-interval 5
 
+      # state.json is "what it looks like now"; history.jsonl is the permanent
+      # append-only record of every open/close. Both are committed back.
       - name: Remember what we saw
         run: |
           git config user.name  "justeat-watcher"
           git config user.email "actions@github.com"
-          git add state.json
+          git add state.json history.jsonl
           git diff --cached --quiet && exit 0
           git commit -m "state: $(date -u +%FT%TZ)"
           # Another run may have pushed while we were polling. Rebase onto it

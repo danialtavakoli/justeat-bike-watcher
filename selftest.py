@@ -252,6 +252,59 @@ run("12. flag turned back off — no phantom 'closed' alert")
 assert not SENT, f"a rule change is not a Just Eat change: {SENT}"
 print("--- rules: the previous verdict is re-derived, not read from a stale bool  OK")
 
+# ---- history.jsonl -------------------------------------------------------
+SENT.clear()
+(WORK / "state.json").unlink(missing_ok=True)
+(WORK / "history.jsonl").unlink(missing_ok=True)
+write_config()
+CURRENT["genoa"] = {"dropdown": ["Driver Scooter"], "postings": []}
+CURRENT["pavia"] = {"dropdown": ["Driver Scooter"], "postings": []}
+
+
+def history():
+    p = WORK / "history.jsonl"
+    if not p.exists():
+        return []
+    return [json.loads(l) for l in p.read_text(encoding="utf-8").splitlines() if l.strip()]
+
+
+run("14. first ever check — records a starting point, no episode")
+h = history()
+assert [e["event"] for e in h] == ["first_seen"], h
+assert h[0]["city"] == "Genoa" and h[0]["open"] is False, h[0]
+
+run("15. unchanged — history must not grow")
+assert len(history()) == 1, history()
+
+CURRENT["genoa"]["dropdown"] = ["Driver Scooter", "Driver E-Bike"]
+run("16. opens — one 'opened' line")
+h = history()
+assert [e["event"] for e in h] == ["first_seen", "opened"], h
+assert h[-1]["matched"] == ["Driver E-Bike"] and h[-1]["source"] == "dropdown", h[-1]
+assert h[-1]["watched"] is True and h[-1]["origin"] == "live", h[-1]
+assert h[-1]["gap_hours"] is not None, "gap tells you how wide the open window really is"
+
+CURRENT["genoa"]["dropdown"] = ["Driver Scooter"]
+run("17. closes — one 'closed' line")
+assert [e["event"] for e in history()] == ["first_seen", "opened", "closed"], history()
+
+# Unwatched cities are recorded too: rare events, and it answers "anywhere?"
+SENT.clear()   # steps 16/17 legitimately alerted about Genoa
+CURRENT["pavia"]["dropdown"] = ["Driver E-Bike"]
+run("18. unwatched city opening is recorded but not alerted")
+h = history()
+assert h[-1]["city"] == "Pavia" and h[-1]["watched"] is False, h[-1]
+assert not SENT, f"recording is not alerting: {SENT}"
+
+r = subprocess.run([sys.executable, str(WORK / "watch.py"), "--history", "Genoa"],
+                   capture_output=True, text=True, env=env, encoding="utf-8")
+assert r.returncode == 0, r.stdout + r.stderr
+assert "OPEN" in r.stdout and "CLOSE" in r.stdout and "open for at least" in r.stdout, r.stdout
+assert "Pavia" not in r.stdout, "filtering by city must actually filter"
+print("--- history: one line per transition, readable via --history  OK")
+
+(WORK / "history.jsonl").unlink(missing_ok=True)
+
 # ---- state migration -----------------------------------------------------
 # A schema-1 state file (keyed by display name, with a "bike" flag) must not
 # replay an alert the user already received.

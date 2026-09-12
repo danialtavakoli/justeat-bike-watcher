@@ -34,6 +34,7 @@ accept the false alarms. Those alerts are worded so you can tell them apart.
 ```bash
 python watch.py --list              # every city: Step 4 options + any adverts
 python watch.py --diagnose Genoa    # both signals for one city, and the verdict
+python watch.py --history Genoa     # every recorded open/close, with durations
 python watch.py --test-telegram     # verify token / chat id
 python watch.py --once              # single check
 python watch.py --once --poll 50    # keep checking for 50 min, then exit
@@ -51,6 +52,36 @@ Match dropdown:  -
 Match postings:  Driver E-Bike — Friday and weekend evenings
 => OPEN:         False
 ```
+
+## History
+
+`history.jsonl` is the permanent record: one JSON line per transition, appended
+on every open and close, for **every** city — not just the watched ones, since
+transitions are rare and it answers "was it open anywhere?" later.
+
+```
+$ python watch.py --history Genoa
+
+Genoa
+  start  2026-08-17T03:43:16Z  watching, currently closed
+  OPEN   2026-08-18T09:38:18Z  Driver E-Bike  [dropdown]  (opened within the previous 0.93h)
+  CLOSE  2026-08-18T16:36:44Z  — open for at least 7.0h
+```
+
+`gap_hours` on each line is how long since the previous check, so an "opened"
+after a five-hour gap means *somewhere in those five hours*, not at that
+timestamp. Don't read the timestamps as exact.
+
+The file was seeded by `backfill_history.py`, which replays the `state: …`
+commits back to 17 Aug 2026 and recovers the 94 transitions they imply — so the
+record covers the whole monitored period, not just the part since the feature
+was added. Backfilled lines are tagged `"origin": "backfill"`, live ones
+`"live"`. Re-running it is a no-op.
+
+Nothing before **17 Aug 2026** exists, anywhere. Just Eat's CDN returns 403 to
+archive crawlers — even for `robots.txt` — so the Wayback Machine, Common Crawl
+and archive.today all have zero captures of this page, and the page itself only
+ever ships current state. That history is not hard to get; it is gone.
 
 ## Configuration
 
@@ -119,6 +150,10 @@ python watch.py
 On Windows, point Task Scheduler at `run_watcher.bat`.
 
 ## State
+
+`state.json` is "what it looks like right now" — the memory that stops repeat
+alerts. `history.jsonl` is the permanent log. Both are committed back by the
+workflow after every check.
 
 `state.json` is schema 2: keyed by `coid:<city_option_id>`, storing `dropdown`,
 `postings`, `offered` and the `open` verdict per city.
