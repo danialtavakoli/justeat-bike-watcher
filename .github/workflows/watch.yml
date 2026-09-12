@@ -2,6 +2,11 @@ name: Just Eat bike watcher
 
 on:
   schedule:
+    # Nominally every 30 minutes. GitHub does NOT honour this on a private repo:
+    # in practice it delivers 6-8 runs a day, hours apart. Each run therefore
+    # polls for a few minutes (see --poll below) instead of taking one instant
+    # sample. Keep the poll window small — a private repo has 2000 free Actions
+    # minutes a month and every started minute is billed.
     - cron: "*/30 * * * *"
   workflow_dispatch: {}
 
@@ -15,21 +20,35 @@ concurrency:
 jobs:
   check:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+
       - run: pip install requests
-      - name: Check for bike openings
+
+      - name: Check for e-bike openings
         env:
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-        run: python watch.py --once
+        run: python watch.py --once --poll 4 --poll-interval 4
+
       - name: Remember what we saw
         run: |
           git config user.name  "justeat-watcher"
           git config user.email "actions@github.com"
           git add state.json
-          git diff --cached --quiet || git commit -m "state: $(date -u +%FT%TZ)"
-          git push
+          git diff --cached --quiet && exit 0
+          git commit -m "state: $(date -u +%FT%TZ)"
+          # Another run may have pushed while we were polling. Rebase onto it
+          # rather than failing the job and losing this run's observation.
+          for attempt in 1 2 3; do
+            git push && exit 0
+            git pull --rebase --autostash origin "${GITHUB_REF_NAME}" || true
+            sleep 5
+          done
+          echo "could not push state after 3 attempts" >&2
+          exit 1

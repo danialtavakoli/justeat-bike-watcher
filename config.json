@@ -2,10 +2,14 @@
   "telegram_token": "SET_VIA_GITHUB_SECRET",
   "chat_id": "SET_VIA_GITHUB_SECRET",
   "cities": [
-    "Genoa"
+    "Genoa",
+    "Genova",
+    "genoa"
   ],
+  "vehicle_pattern": "e-?\\s?bike",
+  "vehicle_label": "e-bike",
   "alert_on_any_city": false,
   "interval_minutes": 30,
-  "notify_on_any_change": true,
+  "notify_on_any_change": false,
   "heartbeat_hours": 24
 }

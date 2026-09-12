@@ -1,127 +1,134 @@
-# Just Eat bike-slot → Telegram watcher (Genoa)
+# Just Eat e-bike slot → Telegram watcher (Genoa)
 
-Just Eat only shows a vehicle on Step 4 of the courier form if they're actively
-recruiting for it in that city. Genoa currently shows **Own Scooter** only.
-This pings your Telegram the moment a bike option appears.
+Pings your Telegram the moment Just Eat starts recruiting **e-bike** couriers
+in Genoa.
 
-**Right now (17 Aug 2026)** the only Italian cities recruiting bikes are
-Ciampino, Pavia, and the Riccione/Cattolica coastal area. Genoa: scooter only.
+**Status as of 12 Sep 2026: Genoa e-bike IS open** — advertised as
+`Driver E-Bike — Friday and weekend evenings`.
 
 ---
 
+## The bug this repo had, and why it mattered
+
+The first version watched one signal and missed a real opening.
+
+Just Eat's courier form embeds its whole recruitment config in an inline
+`window.language = {…}` blob, and that blob states **twice** what a city is
+recruiting — in two places that do not agree with each other:
+
+| Signal | Where | Genoa, 12 Sep 2026 |
+|---|---|---|
+| Step-4 vehicle dropdown | `city.form_questions[]` where `data_key == "vehicle_type"` → `options` | `"Driver E-Bike": false` |
+| Job advert | `city.job_postings[].attributes.postings[].attributes` | `{"option_1": "Friday and weekend evenings", "option_2": "Driver E-Bike"}` |
+
+The original `watch.py` read only the first one, so it recorded
+`Genoa → bike: false` and stayed silent while the second one was openly
+advertising an e-bike job. That is the gap someone else applied through.
+
+Genoa is not a fluke of one field being stale — the two signals are maintained
+independently. Busto Arsizio currently advertises `Driver Scooter` in a posting
+while its dropdown offers only `Driver Car / Kombi`.
+
+**The watcher now takes the union of both signals**, and the alert says which
+one fired so you know whether to use the form's Step 4 or the posting on the
+city page.
+
 ## How it works
 
-The form page embeds its whole recruitment config in an inline
-`window.language = {…}` blob. Inside it, every city has a Vehicle-step question
-whose `options` map is exactly what Step 4 renders — for Genoa:
+One ordinary GET of `https://www.justeat.it/en/courier/form` returns the truth
+for all 53 cities at once. No headless browser, no clicking through the form,
+no personal data submitted anywhere. A check takes about a second.
 
-```json
-{"Driver Bike": false, "Company Bike": false, "Driver E-Bike": false,
- "Company E-Bike": false, "Driver Scooter": true, "Company Scooter": false,
- "Driver E-Roller": false, "Driver Car / Kombi": false, ...}
+## Commands
+
+```bash
+python watch.py --list              # every city: dropdown + any job adverts
+python watch.py --diagnose Genoa    # both signals for one city, and the verdict
+python watch.py --test-telegram     # verify token / chat id
+python watch.py --once              # single check (what Actions runs)
+python watch.py --once --poll 10    # keep checking for 10 min, then exit
+python watch.py                     # loop forever, interval_minutes apart
+python selftest.py                  # offline test suite, no network needed
 ```
 
-So **one ordinary GET request** gives the truth for all 53 cities at once. No
-headless browser, no clicking through the form, no personal data submitted
-anywhere. It's a ~1-second check.
+`--diagnose` is the one to reach for when you suspect a miss:
 
-It has to run on your machine: the cloud sandbox I built this in has no
-outbound internet — it can reach neither `justeat.it` nor `api.telegram.org` —
-so a hosted/scheduled version isn't possible.
+```
+City:            Genoa  (slug genoa, city_option_id 202, aliases ['Genoa'])
+Form dropdown:   Driver Car / Kombi, Driver Scooter
+Job postings:    Driver E-Bike — Friday and weekend evenings
+Pattern:         e-?\s?bike
+Match dropdown:  -
+Match postings:  Driver E-Bike — Friday and weekend evenings
+=> OPEN:         True
+```
+
+## Configuration
+
+`config.json` (env vars win, so secrets never live in a committed file):
+
+| Key | Meaning |
+|---|---|
+| `cities` | Matched against each city's display name **and** slug. Genoa ships under both `Genoa` and `Genova`; both are listed, and they collapse into one city by `city_option_id` so you can't get double alerts. |
+| `vehicle_pattern` | Regex for what counts as a hit. Default `e-?\s?bike` — matches `Driver E-Bike` and `Company E-Bike`, deliberately **not** plain `Driver Bike` (a different job) or `Driver E-Roller`. Set it to `bike` to go back to any bike. |
+| `vehicle_label` | What to call it in messages. |
+| `notify_on_any_change` | Off. Genoa's `Driver Car / Kombi` flag flipped four times in September; that is not news. |
+| `alert_on_any_city` | Off. Turn on to hear about e-bikes in cities you don't watch. |
+| `heartbeat_hours` | A daily "still alive" message, so silence stays meaningful. |
+
+Env overrides: `TELEGRAM_TOKEN`, `TELEGRAM_CHAT_ID`, `WATCH_CITIES`,
+`WATCH_VEHICLE_PATTERN`.
+
+## How often it actually runs
+
+The workflow asks for `*/30 * * * *`. **GitHub does not honour that.** On a
+private repo, scheduled runs are deprioritised: the real delivery over the last
+month has been **6–8 runs a day, 1–5 hours apart**. `gh run list` shows it.
+
+Two consequences worth knowing:
+
+- Each run therefore polls (`--poll 4 --poll-interval 4`, i.e. two checks a few
+  minutes apart) rather than taking one instant sample.
+- Don't raise `--poll` much without doing the arithmetic. A private repo gets
+  2000 free Actions minutes a month and **every started minute is billed**: at
+  7 runs a day, a 4-minute poll costs ~1000 min/month. Running the quota dry
+  stops the watcher completely — a worse failure than checking a bit less often.
+
+Making this repo public would make Actions minutes free and unlimited. The repo
+holds no secrets (they live in GitHub Secrets), only `state.json`.
 
 ## Setup
 
-### 1. Telegram bot (2 minutes)
+### 1. Telegram bot
 
-1. Telegram → search **@BotFather** → `/newbot`.
-2. Name it (`Just Eat Watcher`), username must end in `bot`.
-3. Copy the token it gives you (`8123456789:AAH…`). Keep it private.
-4. Search your new bot and press **Start** — it can't message you until you do.
-5. Open `https://api.telegram.org/bot<TOKEN>/getUpdates` in a browser and find
-   `"chat":{"id":123456789` — that number is your `chat_id`.
+1. Telegram → **@BotFather** → `/newbot`, name it, username must end in `bot`.
+2. Copy the token.
+3. Message your new bot once, then open
+   `https://api.telegram.org/bot<TOKEN>/getUpdates` and copy `message.chat.id`.
 
-### 2. Install and check it works
+### 2. GitHub Actions (how it runs today)
+
+Repo → Settings → Secrets and variables → Actions:
+
+- `TELEGRAM_TOKEN`
+- `TELEGRAM_CHAT_ID`
+
+The workflow commits `state.json` back to the repo after every check — that's
+the memory that stops it alerting twice for the same opening.
+
+### 3. Or run it locally
 
 ```bash
 pip install requests
-python watch.py --list
-```
-
-`--list` prints every city and its vehicles, with 🚲 next to any that has a
-bike. If that looks right, the scraper works.
-
-### 3. Configure
-
-```bash
-python watch.py --once      # creates config.json on first run
-```
-
-Edit `config.json`:
-
-```json
-{
-  "telegram_token": "8123456789:AAH...",
-  "chat_id": "123456789",
-  "cities": ["Genoa"],
-  "alert_on_any_city": false,
-  "interval_minutes": 30,
-  "notify_on_any_change": true,
-  "heartbeat_hours": 24
-}
-```
-
-- `cities` — add more names exactly as `--list` prints them (`["Genoa", "Milan"]`).
-- `alert_on_any_city` — set `true` to also hear about bike openings anywhere in
-  Italy. Useful if you'd relocate; noisy if you wouldn't.
-
-```bash
 python watch.py --test-telegram
+python watch.py
 ```
 
-You should get a message. If not, you skipped pressing **Start** on the bot.
+On Windows, point Task Scheduler at `run_watcher.bat`.
 
-### 4. Run it
+## State
 
-Cron, so it survives reboots — `crontab -e`:
-
-```cron
-*/30 * * * * cd /full/path/to/justeat-bot && /usr/bin/python3 watch.py --once >> cron.log 2>&1
-```
-
-Or just `python watch.py` to run it in a terminal.
-
-Every 30 minutes is plenty — these openings last days, not minutes.
-
-## What you'll receive
-
-| | |
-|---|---|
-| 🚲 **BIKE IS OPEN IN GENOA!** | the one you're waiting for — sent once, with the apply link |
-| ℹ️ options changed | any other change to Genoa's vehicle list |
-| ✅ watcher alive | once a day, plus where bike is open nationally, so silence stays meaningful |
-| ⚠️ failure warning | after 5 failed checks in a row — means Just Eat changed the page |
-
-## Files
-
-| file | what it is |
-|---|---|
-| `watch.py` | the whole bot |
-| `config.json` | token, chat id, cities, interval |
-| `state.json` | last-seen vehicles per city, so you're told once per change |
-| `watch.log` | every check, timestamped |
-| `selftest.py` | offline test — fakes Just Eat and Telegram, verifies the parser and all alert logic |
-
-## What's verified, and what isn't
-
-Verified against the live page from your browser: the `window.language`
-extraction works on the real HTML, and the "which question is the vehicle
-question" heuristic agrees with a hardcoded lookup on **all 53 cities** —
-correctly reporting Genoa as scooter-only, matching what you saw on Step 4.
-
-`selftest.py` covers the rest offline: bike opens → one alert; bike stays →
-no duplicate; bike closes; unrelated vehicle added; changes in unwatched
-cities stay silent.
-
-Not verified: that a plain `requests.get` (no browser, no cookies) gets the
-same HTML — some sites gate that behind bot protection. `python watch.py --list`
-is the one-command check, and it's the first thing to run.
+`state.json` is schema 2: keyed by `coid:<city_option_id>`, storing `dropdown`,
+`postings`, `offered` and the `open` verdict per city. Schema-1 files (keyed by
+display name, with a `bike` flag) are read transparently and upgraded in place
+without replaying alerts you already received.
