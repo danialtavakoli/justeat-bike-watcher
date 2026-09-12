@@ -25,7 +25,6 @@
       "name": "Brescia",
       "slug": "brescia",
       "dropdown": [
-        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "postings": [
@@ -186,13 +185,11 @@
       "slug": "rome",
       "dropdown": [
         "Company Scooter",
-        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "postings": [],
       "offered": [
         "Company Scooter",
-        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "open": false
@@ -340,7 +337,7 @@
         "Driver E-Bike",
         "Driver Scooter"
       ],
-      "open": true
+      "open": false
     },
     "coid:274": {
       "name": "Palermo",
@@ -783,6 +780,6 @@
       "open": true
     }
   },
-  "last_check": "2026-09-12T20:07:41+00:00",
+  "last_check": "2026-09-12T21:23:33+00:00",
   "schema": 2
 }
