@@ -1,66 +1,55 @@
 # Just Eat e-bike slot → Telegram watcher (Genoa)
 
-Pings your Telegram the moment Just Eat starts recruiting **e-bike** couriers
-in Genoa.
-
-**Status as of 12 Sep 2026: Genoa e-bike IS open** — advertised as
-`Driver E-Bike — Friday and weekend evenings`.
+Pings your Telegram the moment Just Eat's courier form actually lets you pick
+an **e-bike** in Genoa.
 
 ---
 
-## The bug this repo had, and why it mattered
+## What counts as "open"
 
-The first version watched one signal and missed a real opening.
-
-Just Eat's courier form embeds its whole recruitment config in an inline
-`window.language = {…}` blob, and that blob states **twice** what a city is
-recruiting — in two places that do not agree with each other:
+The form page embeds its recruitment config in an inline `window.language = {…}`
+blob, and that blob says two different things about each city:
 
 | Signal | Where | Genoa, 12 Sep 2026 |
 |---|---|---|
-| Step-4 vehicle dropdown | `city.form_questions[]` where `data_key == "vehicle_type"` → `options` | `"Driver E-Bike": false` |
+| **Step-4 vehicle dropdown** | `city.form_questions[]` where `data_key == "vehicle_type"` → `options` | `"Driver E-Bike": false` |
 | Job advert | `city.job_postings[].attributes.postings[].attributes` | `{"option_1": "Friday and weekend evenings", "option_2": "Driver E-Bike"}` |
 
-The original `watch.py` read only the first one, so it recorded
-`Genoa → bike: false` and stayed silent while the second one was openly
-advertising an e-bike job. That is the gap someone else applied through.
+**Only the dropdown decides whether you can apply.** Step 4 states this itself:
 
-Genoa is not a fluke of one field being stale — the two signals are maintained
-independently. Busto Arsizio currently advertises `Driver Scooter` in a posting
-while its dropdown offers only `Driver Car / Kombi`.
+> Please note that if your vehicle does not appear as an option, it means we
+> are not currently searching for it.
 
-**The watcher now takes the union of both signals**, and the alert says which
-one fired so you know whether to use the form's Step 4 or the posting on the
-city page.
+The advert is marketing copy and goes stale. Genoa proved it on 12 Sep 2026:
+the advert named `Driver E-Bike` while Step 4 offered only Own Scooter and Own
+Car. A watcher that treats an advert as an opening cries wolf.
 
-## How it works
-
-One ordinary GET of `https://www.justeat.it/en/courier/form` returns the truth
-for all 53 cities at once. No headless browser, no clicking through the form,
-no personal data submitted anywhere. A check takes about a second.
+So alerts fire on the dropdown. Adverts are still parsed and recorded — they
+show up in `--diagnose`, `--list` and the heartbeat — and you can promote them
+to alerts with `alert_on_job_posting: true` if you want an early warning and
+accept the false alarms. Those alerts are worded so you can tell them apart.
 
 ## Commands
 
 ```bash
-python watch.py --list              # every city: dropdown + any job adverts
+python watch.py --list              # every city: Step 4 options + any adverts
 python watch.py --diagnose Genoa    # both signals for one city, and the verdict
 python watch.py --test-telegram     # verify token / chat id
-python watch.py --once              # single check (what Actions runs)
-python watch.py --once --poll 10    # keep checking for 10 min, then exit
+python watch.py --once              # single check
+python watch.py --once --poll 50    # keep checking for 50 min, then exit
 python watch.py                     # loop forever, interval_minutes apart
 python selftest.py                  # offline test suite, no network needed
 ```
 
-`--diagnose` is the one to reach for when you suspect a miss:
+`--diagnose` is the one to reach for when you suspect a miss or a false alarm.
+This is Genoa as of 12 Sep 2026 — advert up, slot closed:
 
 ```
-City:            Genoa  (slug genoa, city_option_id 202, aliases ['Genoa'])
 Form dropdown:   Driver Car / Kombi, Driver Scooter
 Job postings:    Driver E-Bike — Friday and weekend evenings
-Pattern:         e-?\s?bike
 Match dropdown:  -
 Match postings:  Driver E-Bike — Friday and weekend evenings
-=> OPEN:         True
+=> OPEN:         False
 ```
 
 ## Configuration
@@ -72,6 +61,7 @@ Match postings:  Driver E-Bike — Friday and weekend evenings
 | `cities` | Matched against each city's display name **and** slug. Genoa ships under both `Genoa` and `Genova`; both are listed, and they collapse into one city by `city_option_id` so you can't get double alerts. |
 | `vehicle_pattern` | Regex for what counts as a hit. Default `e-?\s?bike` — matches `Driver E-Bike` and `Company E-Bike`, deliberately **not** plain `Driver Bike` (a different job) or `Driver E-Roller`. Set it to `bike` to go back to any bike. |
 | `vehicle_label` | What to call it in messages. |
+| `alert_on_job_posting` | Off. On, a job advert alone will alert — early warning, with false alarms. |
 | `notify_on_any_change` | Off. Genoa's `Driver Car / Kombi` flag flipped four times in September; that is not news. |
 | `alert_on_any_city` | Off. Turn on to hear about e-bikes in cities you don't watch. |
 | `heartbeat_hours` | A daily "still alive" message, so silence stays meaningful. |
@@ -81,34 +71,23 @@ Env overrides: `TELEGRAM_TOKEN`, `TELEGRAM_CHAT_ID`, `WATCH_CITIES`,
 
 ## How often it actually runs
 
-The workflow asks for `*/30 * * * *`. **GitHub does not honour that.** On a
-private repo, scheduled runs are deprioritised: the real delivery over the last
-month has been **6–8 runs a day, 1–5 hours apart**. `gh run list` shows it.
+The workflow asks for `*/30 * * * *`. **GitHub does not honour that.** Measured
+delivery has been **6–8 runs a day, 1–5 hours apart** — `gh run list` shows it.
 
-`--poll` exists to widen each run into a window, and the workflow deliberately
-**does not use it**, because the arithmetic doesn't work on a private repo:
-2000 free Actions minutes a month, every started minute billed, ~7 runs a day.
+That gap is the thing most likely to make you miss a slot: on 18 Aug the Genoa
+e-bike window lasted about seven hours, and a shorter one would fall straight
+through. So each run now holds its runner and polls for ~50 minutes
+(`--poll 50 --poll-interval 5`, 11 checks), and the concurrency queue starts
+the next run as soon as one finishes — which in practice keeps a checker alive
+most of the day at 5-minute resolution.
 
-| Per-run poll | Extra coverage of a 3-hour gap | Minutes/month |
-|---|---|---|
-| none (current) | — | ~210 |
-| 4 min | 2% | ~1050 |
-| 25 min | 14% | ~5500 — **quota dies mid-month** |
+This only works because **the repo is public**: Actions minutes are unmetered
+on public repos. On a private repo the same setting would burn the 2000-minute
+monthly quota in days and stop the watcher completely. If you ever make it
+private again, drop back to a plain `--once`.
 
-Buying 2% for 5× the quota is a bad trade, and exhausting the quota stops the
-watcher completely. Cheap and alive beats frequent and dead.
-
-If you want genuinely tighter coverage, pick one:
-
-- **Make this repo public.** Actions minutes stop being metered, and
-  `--poll 25 --poll-interval 5` in the workflow becomes the right call. The
-  repo holds no secrets — they live in GitHub Secrets — only `state.json`.
-- **Run it on your own PC.** `run_watcher.bat` via Task Scheduler, or just
-  leave `python watch.py` running; then `interval_minutes` is honoured exactly
-  and costs nothing.
-
-Both are belt-and-braces: what actually went wrong was the missing signal, not
-the cadence. The 18 Aug opening lasted about seven hours and *was* caught.
+Running `python watch.py` on your own machine is still the most reliable
+option — `interval_minutes` is then honoured exactly and costs nothing.
 
 ## Setup
 
@@ -142,6 +121,11 @@ On Windows, point Task Scheduler at `run_watcher.bat`.
 ## State
 
 `state.json` is schema 2: keyed by `coid:<city_option_id>`, storing `dropdown`,
-`postings`, `offered` and the `open` verdict per city. Schema-1 files (keyed by
-display name, with a `bike` flag) are read transparently and upgraded in place
-without replaying alerts you already received.
+`postings`, `offered` and the `open` verdict per city.
+
+The previous verdict is **re-derived from the stored signals** on every run
+rather than read back from the stored boolean. That means changing what counts
+as open — flipping `alert_on_job_posting`, editing `vehicle_pattern` — can
+never fake an "opened!" or "closed again" message on the next run. Schema-1
+files (keyed by display name, with a `bike` flag) are read and upgraded in
+place the same way.

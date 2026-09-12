@@ -2,26 +2,33 @@
 """
 Just Eat IT courier — e-bike slot watcher with Telegram alerts.
 
-Two independent signals, both read from one GET
------------------------------------------------
+What counts as "open", and what doesn't
+---------------------------------------
 https://www.justeat.it/en/courier/form embeds its whole recruitment config in
 an inline `window.language = {...}` blob. For every city that blob carries
-*two* separate statements about what is being recruited, and they can disagree:
+*two* statements about what is being recruited, and they can disagree:
 
 1. `form_questions` -> the "Vehicle Selection" question (`data_key`
-   `vehicle_type`). Its `options` map is what the Step-4 dropdown renders:
+   `vehicle_type`). Its `options` map is exactly what Step 4 renders:
 
        {"Driver Bike": false, "Driver E-Bike": false, "Driver Scooter": true,
         "Driver Car / Kombi": true, ...}
 
-2. `job_postings` -> concrete adverts for a specific (shift, vehicle) pair:
+2. `job_postings` -> adverts naming a (shift, vehicle) pair:
 
        {"option_1": "Friday and weekend evenings", "option_2": "Driver E-Bike"}
 
-Signal 2 can advertise a vehicle that signal 1 still marks `false` — that is
-exactly the state Genoa is in as of 12 Sep 2026, and it is why the first
-version of this script (which read only signal 1) stayed silent through a real
-e-bike opening. We now watch the union of both and say which one fired.
+**Signal 1 is the one that decides whether you can apply.** Step 4 says so in
+as many words: "if your vehicle does not appear as an option, it means we are
+not currently searching for it."
+
+Signal 2 is *not* proof of an applyable slot. On 12 Sep 2026 Genoa advertised
+"Driver E-Bike — Friday and weekend evenings" while Step 4 offered only Own
+Scooter and Own Car, verified by loading the form. Adverts go stale.
+
+So: alerts fire on signal 1. Signal 2 is recorded and shown in --diagnose and
+--list, and can be promoted to an alert with `alert_on_job_posting` if you want
+early warnings and accept the false alarms that come with them.
 
 Usage
 -----
@@ -29,7 +36,7 @@ Usage
     python watch.py --diagnose Genoa    # full detail for one city
     python watch.py --test-telegram     # verify token/chat id
     python watch.py --once              # single check (use from cron/Actions)
-    python watch.py --once --poll 22    # keep checking for 22 minutes, then exit
+    python watch.py --once --poll 50    # keep checking for 50 minutes, then exit
     python watch.py                     # loop forever
 """
 
@@ -99,6 +106,7 @@ def default_config() -> dict:
         "cities": ["Genoa"],
         "vehicle_pattern": DEFAULT_VEHICLE_PATTERN,
         "vehicle_label": "e-bike",
+        "alert_on_job_posting": False,
         "alert_on_any_city": False,
         "interval_minutes": 30,
         "notify_on_any_change": False,
@@ -263,15 +271,31 @@ def matches(pattern: re.Pattern, vehicles) -> list[str]:
     return [v for v in vehicles if pattern.search(v)]
 
 
-def hits(pattern: re.Pattern, info: dict) -> dict:
-    """Which of the two signals currently advertise the wanted vehicle."""
-    from_dropdown = matches(pattern, info["dropdown"])
-    from_postings = [p for p in info["postings"] if pattern.search(p["vehicle"])]
+def hits(pattern: re.Pattern, info: dict, posting_counts: bool = False) -> dict:
+    """Which signals advertise the wanted vehicle, and whether that means open.
+
+    `open` follows the Step-4 dropdown alone unless `posting_counts` is set: an
+    advert is not a slot you can select. See the module docstring.
+    """
+    from_dropdown = matches(pattern, info.get("dropdown") or [])
+    from_postings = [p for p in info.get("postings") or []
+                     if pattern.search(p.get("vehicle", ""))]
     return {
         "dropdown": from_dropdown,
         "postings": from_postings,
-        "open": bool(from_dropdown or from_postings),
+        "open": bool(from_dropdown) or bool(posting_counts and from_postings),
     }
+
+
+def previous_hits(pattern: re.Pattern, before: dict, posting_counts: bool) -> dict:
+    """Re-derive the last verdict from the signals we stored, not from the
+    stored boolean — so changing what counts as "open" can never emit a
+    phantom opened/closed alert on the first run after the change."""
+    return hits(pattern, {
+        # schema 1 called it "available"
+        "dropdown": before.get("dropdown", before.get("available")) or [],
+        "postings": before.get("postings") or [],
+    }, posting_counts)
 
 
 def is_watched(info: dict, watched: list[str]) -> bool:
@@ -343,24 +367,30 @@ def describe_postings(postings: list[dict]) -> str:
 
 def open_message(info: dict, hit: dict, label: str) -> str:
     link = APPLY_URL.format(slug=info["slug"])
-    lines = [f"🚲 <b>{label.upper()} IS OPEN IN {info['name'].upper()}!</b>", ""]
 
-    if hit["postings"]:
-        lines.append(f"📋 Job advert: <b>{describe_postings(hit['postings'])}</b>")
     if hit["dropdown"]:
-        lines.append(f"📝 Application form offers: <b>{', '.join(hit['dropdown'])}</b>")
-    if hit["postings"] and not hit["dropdown"]:
-        lines.append(
-            "\n<i>This is advertised as a job posting while the form's vehicle "
-            "dropdown still hides it. Open the form and check Step 4 — if it "
-            "isn't listed there, apply through the posting on the city page.</i>"
-        )
+        lines = [
+            f"🚲 <b>{label.upper()} IS SELECTABLE IN {info['name'].upper()}!</b>", "",
+            f"📝 Step 4 now offers: <b>{', '.join(hit['dropdown'])}</b>",
+        ]
+        if hit["postings"]:
+            lines.append(f"📋 Advert: {describe_postings(hit['postings'])}")
+        lines.append("\n<i>Go now — this can close within the hour.</i>")
+    else:
+        # Only reachable with alert_on_job_posting on.
+        lines = [
+            f"📋 <b>{label.upper()} ADVERTISED IN {info['name'].upper()}</b>", "",
+            f"Advert: <b>{describe_postings(hit['postings'])}</b>",
+            "",
+            "<i>Early warning only — Step 4 does not offer it yet, so you "
+            "probably cannot select it. Adverts can be stale.</i>",
+        ]
 
     lines += [
         "",
-        f"All vehicles currently offered: {', '.join(info['offered']) or '—'}",
+        f"Step 4 currently offers: {', '.join(info['dropdown']) or 'nothing'}",
         "",
-        f'<a href="{link}">Apply now</a>',
+        f'<a href="{link}">Open the form</a>',
     ]
     return "\n".join(lines)
 
@@ -392,20 +422,19 @@ def check_once(cfg: dict) -> int:
 
     state["consecutive_failures"] = 0
     watched = [c.strip().lower() for c in cfg.get("cities") or ["Genoa"]]
+    posting_counts = bool(cfg.get("alert_on_job_posting"))
     prev = state.get("cities") or {}
     messages: list[str] = []
 
     for key, info in sorted(data.items(), key=lambda kv: kv[1]["name"]):
         watching = is_watched(info, watched)
-        hit = hits(pattern, info)
+        hit = hits(pattern, info, posting_counts)
 
         before = prev.get(key)
         if before is None:  # schema 1 keyed state by display name
             before = prev.get(info["name"]) or {}
-        # Schema 1 had a "bike" flag and no "open"; read it as the previous
-        # answer so upgrading doesn't replay an alert the user already got.
-        open_before = bool(before.get("open", before.get("bike", False)))
         known_before = bool(before)
+        open_before = known_before and previous_hits(pattern, before, posting_counts)["open"]
         offered_before = before.get("offered", before.get("available"))
 
         if watching and hit["open"] and not open_before:
@@ -448,7 +477,7 @@ def check_once(cfg: dict) -> int:
         log(f"WARNING: none of {cfg.get('cities')} matched any city on the page")
 
     def summarise(info: dict) -> str:
-        hit = hits(pattern, info)
+        hit = hits(pattern, info, posting_counts)
         post = f" | advert: {describe_postings(info['postings'])}" if info["postings"] else ""
         return (f"{info['name']}: {'MATCH' if hit['open'] else 'no'} "
                 f"[{', '.join(info['dropdown']) or 'none'}]{post}")
@@ -472,14 +501,15 @@ def check_once(cfg: dict) -> int:
         if due:
             lines = []
             for info in watched_now.values():
-                hit = hits(pattern, info)
+                hit = hits(pattern, info, posting_counts)
                 lines.append(
                     f"• {info['name']}: {'🚲 OPEN' if hit['open'] else 'no ' + label}"
                     f" — form offers {', '.join(info['dropdown']) or 'nothing'}"
                     + (f"; advert: {describe_postings(info['postings'])}"
                        if info["postings"] else "")
                 )
-            elsewhere = sorted(v["name"] for v in data.values() if hits(pattern, v)["open"])
+            elsewhere = sorted(v["name"] for v in data.values()
+                               if hits(pattern, v, posting_counts)["open"])
             send_telegram(
                 cfg,
                 "✅ Watcher alive.\n" + "\n".join(lines)
@@ -495,7 +525,7 @@ def check_once(cfg: dict) -> int:
             "dropdown": v["dropdown"],
             "postings": v["postings"],
             "offered": v["offered"],
-            "open": hits(pattern, v)["open"],
+            "open": hits(pattern, v, posting_counts)["open"],
         }
         for k, v in data.items()
     }
@@ -510,10 +540,11 @@ def check_once(cfg: dict) -> int:
 
 def cmd_list(cfg: dict) -> int:
     pattern = vehicle_matcher(cfg)
+    posting_counts = bool(cfg.get("alert_on_job_posting"))
     data = city_signals(fetch_html())
     width = max(len(v["name"]) for v in data.values())
     for info in sorted(data.values(), key=lambda v: v["name"]):
-        mark = "*" if hits(pattern, info)["open"] else " "
+        mark = "*" if hits(pattern, info, posting_counts)["open"] else " "
         post = f"   [advert: {describe_postings(info['postings'])}]" if info["postings"] else ""
         print(f"{mark} {info['name'].ljust(width)}  {', '.join(info['dropdown']) or '-'}{post}")
     print(f"\n{len(data)} cities.")
@@ -522,6 +553,7 @@ def cmd_list(cfg: dict) -> int:
 
 def cmd_diagnose(cfg: dict, wanted: str) -> int:
     pattern = vehicle_matcher(cfg)
+    posting_counts = bool(cfg.get("alert_on_job_posting"))
     data = city_signals(fetch_html())
     found = [v for v in data.values()
              if wanted.lower() in {n.lower() for n in v["names"]} | {v["slug"].lower()}]
@@ -530,7 +562,7 @@ def cmd_diagnose(cfg: dict, wanted: str) -> int:
               + ", ".join(sorted(v["name"] for v in data.values())))
         return 1
     for info in found:
-        hit = hits(pattern, info)
+        hit = hits(pattern, info, posting_counts)
         print(f"City:            {info['name']}  (slug {info['slug']}, "
               f"city_option_id {info['city_option_id']}, aliases {info['names']})")
         print(f"Form dropdown:   {', '.join(info['dropdown']) or '-'}")

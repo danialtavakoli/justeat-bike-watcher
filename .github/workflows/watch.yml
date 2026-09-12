@@ -2,12 +2,12 @@ name: Just Eat bike watcher
 
 on:
   schedule:
-    # Nominally every 30 minutes. GitHub does NOT honour this on a private repo:
-    # measured delivery is 6-8 runs a day, 1-5 hours apart. See the README for
-    # why we don't paper over that with --poll here: a private repo gets 2000
-    # free Actions minutes a month and every started minute is billed, so a
-    # poll long enough to matter against a 3-hour gap would exhaust the quota
-    # and stop the watcher entirely. Cheap and alive beats frequent and dead.
+    # Nominally every 30 minutes. GitHub does NOT honour that — measured
+    # delivery has been 6-8 runs a day, 1-5 hours apart. Each run therefore
+    # holds the runner and polls for ~50 minutes (see --poll below) instead of
+    # taking one instant sample, and the concurrency queue starts the next run
+    # as soon as this one ends. That is affordable only because this repo is
+    # public: Actions minutes are unmetered on public repos.
     - cron: "*/30 * * * *"
   workflow_dispatch: {}
 
@@ -21,7 +21,7 @@ concurrency:
 jobs:
   check:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 70
     steps:
       - uses: actions/checkout@v4
 
@@ -35,9 +35,9 @@ jobs:
         env:
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-        # If this repo is ever made public, Actions minutes stop being metered
-        # and `--poll 25 --poll-interval 5` here becomes the right call.
-        run: python watch.py --once
+        # 11 checks, 5 minutes apart. A slot that opens and closes inside an
+        # hour — which is what the 18 Aug window looked like — now gets seen.
+        run: python watch.py --once --poll 50 --poll-interval 5
 
       - name: Remember what we saw
         run: |

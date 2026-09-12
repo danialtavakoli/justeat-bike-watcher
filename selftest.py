@@ -2,9 +2,11 @@
 """
 Offline test: serves a fixture page shaped exactly like the real Just Eat form
 HTML, plus a fake Telegram API, and drives watch.py --once through the cases
-that matter — including the one that went wrong in production, where a city
-advertises an e-bike job posting while the Step-4 vehicle dropdown still says
-"Driver E-Bike": false.
+that matter — including both production mistakes:
+
+  * the miss: an opening that came and went between checks;
+  * the false alarm: a job advert naming "Driver E-Bike" while Step 4 offered
+    only Own Scooter and Own Car. Step 4 is the truth; an advert is not a slot.
 
 Runs in a temp directory against a copy of watch.py, so it can never touch the
 real config.json or state.json.
@@ -31,7 +33,7 @@ ALL_VEHICLES = [
 #   postings -> job_postings adverts, as (shift, vehicle) pairs
 CURRENT = {
     "genoa": {"dropdown": ["Driver Scooter"], "postings": []},
-    "pavia": {"dropdown": ["Driver E-Bike"], "postings": []},
+    "pavia": {"dropdown": ["Driver Scooter"], "postings": []},
 }
 
 WORK = Path(tempfile.mkdtemp(prefix="je-selftest-"))
@@ -111,10 +113,17 @@ CONFIG = {
     "telegram_api_base": f"http://127.0.0.1:{PORT}",
     "cities": ["Genoa", "Genova"],
     "vehicle_pattern": "e-?\\s?bike", "vehicle_label": "e-bike",
+    "alert_on_job_posting": False,
     "alert_on_any_city": False, "interval_minutes": 30,
     "notify_on_any_change": False, "heartbeat_hours": 0,
 }
-(WORK / "config.json").write_text(json.dumps(CONFIG, indent=2))
+
+
+def write_config(**overrides):
+    (WORK / "config.json").write_text(json.dumps({**CONFIG, **overrides}, indent=2))
+
+
+write_config()
 
 env = dict(os.environ, JE_FORM_URL=f"http://127.0.0.1:{PORT}/en/courier/form")
 
@@ -152,22 +161,31 @@ assert p["postings"] == [{"vehicle": "Driver E-Bike",
                           "shift": "Friday and weekend evenings"}], p
 assert "Driver E-Bike" in p["offered"] and "Driver E-Bike" not in p["dropdown"]
 CURRENT["genoa"]["postings"] = []
-print("--- parser: reads job_postings as a second, independent signal  OK")
+print("--- parser: reads job_postings as a second, separate signal  OK")
+
+pat = watch.vehicle_matcher(CONFIG)
+info = {"dropdown": ["Driver Scooter"],
+        "postings": [{"vehicle": "Driver E-Bike", "shift": "Fri"}]}
+assert watch.hits(pat, info)["open"] is False, "advert alone is not an opening"
+assert watch.hits(pat, info, True)["open"] is True, "unless you opt in"
+print("--- verdict: Step 4 decides; adverts only count when asked to  OK")
 
 assert watch.poll_waits(0, 4) == [], "no --poll means no extra checks"
 # 4-minute window, 4-minute gap: one extra check, landing on the deadline.
 assert watch.poll_waits(4, 4) == [240.0], watch.poll_waits(4, 4)
 assert watch.poll_waits(10, 4) == [240.0, 240.0, 120.0], watch.poll_waits(10, 4)
-assert sum(watch.poll_waits(25, 5)) == 25 * 60
+assert sum(watch.poll_waits(50, 5)) == 50 * 60
+assert len(watch.poll_waits(50, 5)) == 10, "50/5 = ten further checks"
 print("--- poll: a window ends with a check on the deadline, not a gap short  OK")
 
-pat = watch.vehicle_matcher(CONFIG)
 assert pat.search("Driver E-Bike") and pat.search("Company E-Bike")
 assert not pat.search("Driver Bike"), "plain pedal bike must not count as e-bike"
 assert not pat.search("Driver E-Roller")
 print("--- matcher: e-bike only, not plain Bike, not E-Roller  OK")
 
 # ---- behaviour tests -----------------------------------------------------
+# Step 4 is the truth. It says so itself: "if your vehicle does not appear as
+# an option, it means we are not currently searching for it."
 run("1. baseline: Genoa scooter only")
 assert not SENT, SENT
 
@@ -178,44 +196,67 @@ CURRENT["genoa"]["dropdown"] = ["Driver Scooter", "Driver Bike"]
 run("3. plain pedal bike appears — must stay silent")
 assert not SENT, f"pedal bike is not an e-bike: {SENT}"
 
-# THE REGRESSION: a job posting advertises an e-bike while the dropdown hides it.
+# The false alarm that shipped on 12 Sep: an advert named Driver E-Bike while
+# Step 4 offered only Own Scooter and Own Car. It must NOT alert.
 CURRENT["genoa"]["postings"] = [("Friday and weekend evenings", "Driver E-Bike")]
-run("4. e-bike advertised via job posting only")
+run("4. e-bike advertised, but Step 4 does not offer it")
+assert not SENT, f"an advert alone is not an applyable slot: {SENT}"
+
+CURRENT["genoa"]["dropdown"] = ["Driver Scooter", "Driver E-Bike"]
+run("5. Step 4 now offers the e-bike — the real thing")
 assert len(SENT) == 1, SENT
 text = SENT[0]["text"]
-assert "E-BIKE IS OPEN IN GENOA" in text, text
-assert "Friday and weekend evenings" in text, text
+assert "E-BIKE IS SELECTABLE IN GENOA" in text, text
+assert "Step 4 now offers" in text and "Driver E-Bike" in text, text
 assert "city=genoa" in text, text
 print("    ->", text.replace("\n", " | ")[:170])
 
-run("5. still advertised (no duplicate)")
+run("6. still open (no duplicate)")
 assert len(SENT) == 1, SENT
 
-CURRENT["genoa"]["postings"] = []
-run("6. posting withdrawn")
+CURRENT["genoa"]["dropdown"] = ["Driver Scooter"]
+run("7. closed again")
 assert len(SENT) == 2 and "closed again" in SENT[1]["text"], SENT
 
-CURRENT["genoa"]["dropdown"] = ["Driver Scooter", "Driver E-Bike"]
-run("7. e-bike appears in the form dropdown instead")
-assert len(SENT) == 3 and "E-BIKE IS OPEN IN GENOA" in SENT[2]["text"], SENT
-assert "Application form offers" in SENT[2]["text"], SENT[2]["text"]
-
-CURRENT["genoa"]["dropdown"] = ["Driver Scooter"]
-run("8. closed again")
-assert len(SENT) == 4, SENT
+# The advert is still up here, and must not hold the city open on its own.
+assert CURRENT["genoa"]["postings"], "fixture should still be advertising"
+run("8. advert outlives the slot — stays quiet")
+assert len(SENT) == 2, f"stale advert must not re-open the city: {SENT[2:]}"
 
 CURRENT["genoa"]["dropdown"] = ["Driver Scooter", "Driver Car / Kombi"]
 run("9. unrelated vehicle added — silent by default")
-assert len(SENT) == 4, f"Car/Kombi churn must not notify: {SENT[4:]}"
+assert len(SENT) == 2, f"Car/Kombi churn must not notify: {SENT[2:]}"
 
-CURRENT["pavia"]["postings"] = [("Full weekend", "Driver E-Bike")]
+CURRENT["pavia"]["dropdown"] = ["Driver E-Bike"]
 run("10. e-bike in an unwatched city stays silent")
-assert len(SENT) == 4, f"should not alert for Pavia: {SENT[4:]}"
+assert len(SENT) == 2, f"should not alert for Pavia: {SENT[2:]}"
+
+# ---- opt-in early warning ------------------------------------------------
+SENT.clear()
+(WORK / "state.json").unlink(missing_ok=True)
+write_config(alert_on_job_posting=True)
+CURRENT["genoa"] = {"dropdown": ["Driver Scooter"],
+                    "postings": [("Friday and weekend evenings", "Driver E-Bike")]}
+run("11. alert_on_job_posting on: the advert does alert")
+assert len(SENT) == 1, SENT
+assert "ADVERTISED IN GENOA" in SENT[0]["text"], SENT[0]["text"]
+assert "cannot select it" in SENT[0]["text"], SENT[0]["text"]
+print("--- opt-in: advert alerts are labelled early warning, not a slot  OK")
+
+# ---- a rule change must not fake a transition ----------------------------
+# Same state file, same advert, but the flag goes back off. The verdict flips
+# open -> closed purely because the rule changed, and that is not news.
+SENT.clear()
+write_config(alert_on_job_posting=False)
+run("12. flag turned back off — no phantom 'closed' alert")
+assert not SENT, f"a rule change is not a Just Eat change: {SENT}"
+print("--- rules: the previous verdict is re-derived, not read from a stale bool  OK")
 
 # ---- state migration -----------------------------------------------------
 # A schema-1 state file (keyed by display name, with a "bike" flag) must not
 # replay an alert the user already received.
 SENT.clear()
+write_config()
 CURRENT["genoa"] = {"dropdown": ["Driver Scooter", "Driver E-Bike"], "postings": []}
 (WORK / "state.json").write_text(json.dumps({
     "consecutive_failures": 0,
@@ -223,7 +264,7 @@ CURRENT["genoa"] = {"dropdown": ["Driver Scooter", "Driver E-Bike"], "postings":
                          "bike": True, "slug": "genoa"}},
     "last_check": "2026-09-12T00:00:00+00:00",
 }, indent=2))
-run("11. upgrade from schema-1 state while e-bike is already open")
+run("13. upgrade from schema-1 state while e-bike is already open")
 assert not SENT, f"must not re-alert on an opening already reported: {SENT}"
 
 migrated = json.loads((WORK / "state.json").read_text(encoding="utf-8"))
@@ -232,5 +273,5 @@ print("--- migration: schema-1 state upgrades without replaying alerts  OK")
 
 srv.shutdown()
 shutil.rmtree(WORK, ignore_errors=True)
-print("\nALL CHECKS PASSED — the posting-only opening that was missed in "
-      "production now fires, and pedal-bike/Car-Kombi churn stays quiet.")
+print("\nALL CHECKS PASSED — Step 4 decides, stale adverts stay quiet, and a "
+      "rule change never fakes an opening.")
