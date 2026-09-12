@@ -27,7 +27,6 @@
     },
     "Milan": {
       "available": [
-        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "bike": false,
@@ -300,10 +299,9 @@
     },
     "Piacenza": {
       "available": [
-        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "bike": true,
+      "bike": false,
       "slug": "piacenza"
     },
     "Busto Arsizio": {
@@ -398,5 +396,5 @@
       "slug": "ciampino"
     }
   },
-  "last_check": "2026-09-12T10:25:15+00:00"
+  "last_check": "2026-09-12T13:41:53+00:00"
 }
