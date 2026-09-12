@@ -85,17 +85,30 @@ The workflow asks for `*/30 * * * *`. **GitHub does not honour that.** On a
 private repo, scheduled runs are deprioritised: the real delivery over the last
 month has been **6–8 runs a day, 1–5 hours apart**. `gh run list` shows it.
 
-Two consequences worth knowing:
+`--poll` exists to widen each run into a window, and the workflow deliberately
+**does not use it**, because the arithmetic doesn't work on a private repo:
+2000 free Actions minutes a month, every started minute billed, ~7 runs a day.
 
-- Each run therefore polls (`--poll 4 --poll-interval 4`, i.e. two checks a few
-  minutes apart) rather than taking one instant sample.
-- Don't raise `--poll` much without doing the arithmetic. A private repo gets
-  2000 free Actions minutes a month and **every started minute is billed**: at
-  7 runs a day, a 4-minute poll costs ~1000 min/month. Running the quota dry
-  stops the watcher completely — a worse failure than checking a bit less often.
+| Per-run poll | Extra coverage of a 3-hour gap | Minutes/month |
+|---|---|---|
+| none (current) | — | ~210 |
+| 4 min | 2% | ~1050 |
+| 25 min | 14% | ~5500 — **quota dies mid-month** |
 
-Making this repo public would make Actions minutes free and unlimited. The repo
-holds no secrets (they live in GitHub Secrets), only `state.json`.
+Buying 2% for 5× the quota is a bad trade, and exhausting the quota stops the
+watcher completely. Cheap and alive beats frequent and dead.
+
+If you want genuinely tighter coverage, pick one:
+
+- **Make this repo public.** Actions minutes stop being metered, and
+  `--poll 25 --poll-interval 5` in the workflow becomes the right call. The
+  repo holds no secrets — they live in GitHub Secrets — only `state.json`.
+- **Run it on your own PC.** `run_watcher.bat` via Task Scheduler, or just
+  leave `python watch.py` running; then `interval_minutes` is honoured exactly
+  and costs nothing.
+
+Both are belt-and-braces: what actually went wrong was the missing signal, not
+the cadence. The 18 Aug opening lasted about seven hours and *was* caught.
 
 ## Setup
 

@@ -543,6 +543,23 @@ def cmd_diagnose(cfg: dict, wanted: str) -> int:
     return 0
 
 
+def poll_waits(poll_minutes: float, interval_minutes: float) -> list[float]:
+    """Sleeps for a --poll window, after the first check has already happened.
+
+    The final wait is shortened rather than dropped, so the window always ends
+    with a check right on the deadline instead of one gap short of it.
+    """
+    total = max(0.0, poll_minutes) * 60
+    gap = max(30.0, interval_minutes * 60)
+    waits: list[float] = []
+    elapsed = 0.0
+    while total - elapsed >= 1:
+        wait = min(gap, total - elapsed)
+        waits.append(wait)
+        elapsed += wait
+    return waits
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description="Just Eat e-bike slot Telegram watcher")
     ap.add_argument("--list", action="store_true", help="print all cities and exit")
@@ -581,12 +598,9 @@ def main() -> int:
 
     if args.once:
         rc = check_once(cfg)
-        if args.poll > 0:
-            deadline = time.monotonic() + args.poll * 60
-            gap = max(30.0, args.poll_interval * 60)
-            while time.monotonic() + gap <= deadline:
-                time.sleep(gap)
-                rc = check_once(cfg)
+        for wait in poll_waits(args.poll, args.poll_interval):
+            time.sleep(wait)
+            rc = check_once(cfg)
         return rc
 
     interval = max(60, int(float(cfg.get("interval_minutes", 30)) * 60))

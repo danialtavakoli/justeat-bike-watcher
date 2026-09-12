@@ -154,6 +154,13 @@ assert "Driver E-Bike" in p["offered"] and "Driver E-Bike" not in p["dropdown"]
 CURRENT["genoa"]["postings"] = []
 print("--- parser: reads job_postings as a second, independent signal  OK")
 
+assert watch.poll_waits(0, 4) == [], "no --poll means no extra checks"
+# 4-minute window, 4-minute gap: one extra check, landing on the deadline.
+assert watch.poll_waits(4, 4) == [240.0], watch.poll_waits(4, 4)
+assert watch.poll_waits(10, 4) == [240.0, 240.0, 120.0], watch.poll_waits(10, 4)
+assert sum(watch.poll_waits(25, 5)) == 25 * 60
+print("--- poll: a window ends with a check on the deadline, not a gap short  OK")
+
 pat = watch.vehicle_matcher(CONFIG)
 assert pat.search("Driver E-Bike") and pat.search("Company E-Bike")
 assert not pat.search("Driver Bike"), "plain pedal bike must not count as e-bike"
