@@ -509,7 +509,6 @@
       "name": "Bergamo",
       "slug": "bergamo",
       "dropdown": [
-        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "postings": [
@@ -780,6 +779,6 @@
       "open": true
     }
   },
-  "last_check": "2026-09-12T22:24:34+00:00",
+  "last_check": "2026-09-13T00:42:45+00:00",
   "schema": 2
 }
