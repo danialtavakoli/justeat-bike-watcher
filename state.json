@@ -6,7 +6,6 @@
       "name": "Monza",
       "slug": "monza",
       "dropdown": [
-        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "postings": [
@@ -16,7 +15,6 @@
         }
       ],
       "offered": [
-        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "open": false
@@ -25,6 +23,7 @@
       "name": "Brescia",
       "slug": "brescia",
       "dropdown": [
+        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "postings": [
@@ -60,6 +59,7 @@
       "name": "Milan",
       "slug": "milan",
       "dropdown": [
+        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "postings": [
@@ -69,6 +69,7 @@
         }
       ],
       "offered": [
+        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "open": false
@@ -184,11 +185,13 @@
       "name": "Rome",
       "slug": "rome",
       "dropdown": [
+        "Company Car / Kombi",
         "Company Scooter",
         "Driver Scooter"
       ],
       "postings": [],
       "offered": [
+        "Company Car / Kombi",
         "Company Scooter",
         "Driver Scooter"
       ],
@@ -475,7 +478,7 @@
       "name": "Mestre",
       "slug": "mestre",
       "dropdown": [
-        "Driver Car / Kombi"
+        "Driver Scooter"
       ],
       "postings": [
         {
@@ -587,6 +590,7 @@
       "name": "Varese",
       "slug": "varese",
       "dropdown": [
+        "Driver E-Bike",
         "Driver Scooter"
       ],
       "postings": [
@@ -596,9 +600,10 @@
         }
       ],
       "offered": [
+        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "open": false
+      "open": true
     },
     "coid:400": {
       "name": "Piacenza",
@@ -777,6 +782,6 @@
       "open": true
     }
   },
-  "last_check": "2026-09-14T14:38:17+00:00",
+  "last_check": "2026-09-14T19:58:37+00:00",
   "schema": 2
 }
