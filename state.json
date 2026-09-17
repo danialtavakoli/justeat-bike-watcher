@@ -186,17 +186,15 @@
       "dropdown": [
         "Company Scooter",
         "Driver Car / Kombi",
-        "Driver E-Bike",
         "Driver Scooter"
       ],
       "postings": [],
       "offered": [
         "Company Scooter",
         "Driver Car / Kombi",
-        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "open": true
+      "open": false
     },
     "coid:193": {
       "name": "Bologna",
@@ -783,6 +781,6 @@
       "open": true
     }
   },
-  "last_check": "2026-09-17T16:03:38+00:00",
+  "last_check": "2026-09-17T20:01:39+00:00",
   "schema": 2
 }
