@@ -589,6 +589,7 @@
       "name": "Varese",
       "slug": "varese",
       "dropdown": [
+        "Driver E-Bike",
         "Driver Scooter"
       ],
       "postings": [
@@ -598,9 +599,10 @@
         }
       ],
       "offered": [
+        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "open": false
+      "open": true
     },
     "coid:400": {
       "name": "Piacenza",
@@ -779,6 +781,6 @@
       "open": true
     }
   },
-  "last_check": "2026-09-18T15:43:34+00:00",
+  "last_check": "2026-09-18T19:03:03+00:00",
   "schema": 2
 }
