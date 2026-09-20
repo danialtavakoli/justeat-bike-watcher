@@ -58,7 +58,6 @@
       "name": "Milan",
       "slug": "milan",
       "dropdown": [
-        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "postings": [
@@ -68,7 +67,6 @@
         }
       ],
       "offered": [
-        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "open": false
@@ -185,13 +183,11 @@
       "slug": "rome",
       "dropdown": [
         "Company Scooter",
-        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "postings": [],
       "offered": [
         "Company Scooter",
-        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "open": false
@@ -779,6 +775,6 @@
       "open": true
     }
   },
-  "last_check": "2026-09-20T12:59:50+00:00",
+  "last_check": "2026-09-20T17:15:00+00:00",
   "schema": 2
 }
