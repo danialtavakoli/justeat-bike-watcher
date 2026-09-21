@@ -1,6 +1,6 @@
 {
   "consecutive_failures": 0,
-  "last_heartbeat": "2026-09-20T06:54:14+00:00",
+  "last_heartbeat": "2026-09-21T07:49:06+00:00",
   "cities": {
     "coid:166": {
       "name": "Monza",
@@ -196,10 +196,12 @@
       "name": "Bologna",
       "slug": "bologna",
       "dropdown": [
+        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "postings": [],
       "offered": [
+        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "open": false
@@ -775,6 +777,6 @@
       "open": true
     }
   },
-  "last_check": "2026-09-21T02:21:28+00:00",
+  "last_check": "2026-09-21T08:39:15+00:00",
   "schema": 2
 }
