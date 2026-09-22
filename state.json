@@ -1,6 +1,6 @@
 {
   "consecutive_failures": 0,
-  "last_heartbeat": "2026-09-21T07:49:06+00:00",
+  "last_heartbeat": "2026-09-22T07:52:36+00:00",
   "cities": {
     "coid:166": {
       "name": "Monza",
@@ -58,6 +58,7 @@
       "name": "Milan",
       "slug": "milan",
       "dropdown": [
+        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "postings": [
@@ -67,6 +68,7 @@
         }
       ],
       "offered": [
+        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "open": false
@@ -143,16 +145,14 @@
       "slug": "la-spezia",
       "dropdown": [
         "Driver Car / Kombi",
-        "Driver E-Bike",
         "Driver Scooter"
       ],
       "postings": [],
       "offered": [
         "Driver Car / Kombi",
-        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "open": true
+      "open": false
     },
     "coid:189": {
       "name": "Florence",
@@ -779,6 +779,6 @@
       "open": true
     }
   },
-  "last_check": "2026-09-22T02:35:00+00:00",
+  "last_check": "2026-09-22T08:22:44+00:00",
   "schema": 2
 }
