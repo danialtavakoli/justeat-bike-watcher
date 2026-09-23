@@ -93,16 +93,14 @@
       "slug": "reggio-emilia",
       "dropdown": [
         "Driver Car / Kombi",
-        "Driver E-Bike",
         "Driver Scooter"
       ],
       "postings": [],
       "offered": [
         "Driver Car / Kombi",
-        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "open": true
+      "open": false
     },
     "coid:183": {
       "name": "Trieste",
@@ -798,6 +796,6 @@
       "open": true
     }
   },
-  "last_check": "2026-09-23T19:22:50+00:00",
+  "last_check": "2026-09-23T22:58:53+00:00",
   "schema": 2
 }
