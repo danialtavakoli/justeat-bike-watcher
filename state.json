@@ -24,7 +24,6 @@
       "slug": "brescia",
       "dropdown": [
         "Driver Car / Kombi",
-        "Driver E-Bike",
         "Driver Scooter"
       ],
       "postings": [
@@ -35,10 +34,9 @@
       ],
       "offered": [
         "Driver Car / Kombi",
-        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "open": true
+      "open": false
     },
     "coid:170": {
       "name": "Verona",
@@ -110,7 +108,6 @@
       "name": "Trieste",
       "slug": "trieste",
       "dropdown": [
-        "Driver E-Bike",
         "Driver Scooter"
       ],
       "postings": [
@@ -120,10 +117,9 @@
         }
       ],
       "offered": [
-        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "open": true
+      "open": false
     },
     "coid:187": {
       "name": "Rimini",
@@ -438,15 +434,13 @@
       "name": "Prato",
       "slug": "prato",
       "dropdown": [
-        "Driver E-Bike",
         "Driver Scooter"
       ],
       "postings": [],
       "offered": [
-        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "open": true
+      "open": false
     },
     "coid:364": {
       "name": "Pavia",
@@ -804,6 +798,6 @@
       "open": true
     }
   },
-  "last_check": "2026-09-23T15:11:43+00:00",
+  "last_check": "2026-09-23T19:22:50+00:00",
   "schema": 2
 }
