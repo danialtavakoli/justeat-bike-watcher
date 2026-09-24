@@ -1,6 +1,6 @@
 {
   "consecutive_failures": 0,
-  "last_heartbeat": "2026-09-23T09:27:40+00:00",
+  "last_heartbeat": "2026-09-24T11:35:18+00:00",
   "cities": {
     "coid:166": {
       "name": "Monza",
@@ -445,16 +445,14 @@
       "slug": "pavia",
       "dropdown": [
         "Driver Car / Kombi",
-        "Driver E-Bike",
         "Driver Scooter"
       ],
       "postings": [],
       "offered": [
         "Driver Car / Kombi",
-        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "open": true
+      "open": false
     },
     "coid:365": {
       "name": "Salerno",
@@ -796,6 +794,6 @@
       "open": true
     }
   },
-  "last_check": "2026-09-24T06:47:58+00:00",
+  "last_check": "2026-09-24T12:25:27+00:00",
   "schema": 2
 }
