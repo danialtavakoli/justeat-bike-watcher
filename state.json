@@ -1,6 +1,6 @@
 {
   "consecutive_failures": 0,
-  "last_heartbeat": "2026-09-24T11:35:18+00:00",
+  "last_heartbeat": "2026-09-25T12:55:13+00:00",
   "cities": {
     "coid:166": {
       "name": "Monza",
@@ -577,7 +577,6 @@
       "slug": "trento",
       "dropdown": [
         "Driver Car / Kombi",
-        "Driver E-Bike",
         "Driver Scooter"
       ],
       "postings": [
@@ -588,10 +587,9 @@
       ],
       "offered": [
         "Driver Car / Kombi",
-        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "open": true
+      "open": false
     },
     "coid:399": {
       "name": "Varese",
@@ -791,6 +789,6 @@
       "open": true
     }
   },
-  "last_check": "2026-09-25T08:16:43+00:00",
+  "last_check": "2026-09-25T13:45:27+00:00",
   "schema": 2
 }
