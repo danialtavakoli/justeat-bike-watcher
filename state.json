@@ -260,15 +260,13 @@
       "name": "Ferrara",
       "slug": "ferrara",
       "dropdown": [
-        "Driver E-Bike",
         "Driver Scooter"
       ],
       "postings": [],
       "offered": [
-        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "open": true
+      "open": false
     },
     "coid:198": {
       "name": "Bari",
@@ -580,7 +578,6 @@
       "slug": "trento",
       "dropdown": [
         "Driver Car / Kombi",
-        "Driver E-Bike",
         "Driver Scooter"
       ],
       "postings": [
@@ -591,10 +588,9 @@
       ],
       "offered": [
         "Driver Car / Kombi",
-        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "open": true
+      "open": false
     },
     "coid:399": {
       "name": "Varese",
@@ -794,6 +790,6 @@
       "open": true
     }
   },
-  "last_check": "2026-09-25T18:41:57+00:00",
+  "last_check": "2026-09-25T22:11:13+00:00",
   "schema": 2
 }
