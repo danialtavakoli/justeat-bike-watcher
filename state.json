@@ -23,7 +23,6 @@
       "name": "Brescia",
       "slug": "brescia",
       "dropdown": [
-        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "postings": [
@@ -261,13 +260,15 @@
       "name": "Ferrara",
       "slug": "ferrara",
       "dropdown": [
+        "Driver E-Bike",
         "Driver Scooter"
       ],
       "postings": [],
       "offered": [
+        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "open": false
+      "open": true
     },
     "coid:198": {
       "name": "Bari",
@@ -430,13 +431,15 @@
       "name": "Prato",
       "slug": "prato",
       "dropdown": [
+        "Driver E-Bike",
         "Driver Scooter"
       ],
       "postings": [],
       "offered": [
+        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "open": false
+      "open": true
     },
     "coid:364": {
       "name": "Pavia",
@@ -577,6 +580,7 @@
       "slug": "trento",
       "dropdown": [
         "Driver Car / Kombi",
+        "Driver E-Bike",
         "Driver Scooter"
       ],
       "postings": [
@@ -587,9 +591,10 @@
       ],
       "offered": [
         "Driver Car / Kombi",
+        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "open": false
+      "open": true
     },
     "coid:399": {
       "name": "Varese",
@@ -789,6 +794,6 @@
       "open": true
     }
   },
-  "last_check": "2026-09-25T13:45:27+00:00",
+  "last_check": "2026-09-25T18:41:57+00:00",
   "schema": 2
 }
