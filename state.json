@@ -455,15 +455,13 @@
       "name": "Salerno",
       "slug": "salerno",
       "dropdown": [
-        "Driver E-Bike",
         "Driver Scooter"
       ],
       "postings": [],
       "offered": [
-        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "open": true
+      "open": false
     },
     "coid:372": {
       "name": "Forlì",
@@ -786,6 +784,6 @@
       "open": true
     }
   },
-  "last_check": "2026-09-27T00:37:26+00:00",
+  "last_check": "2026-09-27T05:33:26+00:00",
   "schema": 2
 }
