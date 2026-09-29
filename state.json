@@ -579,7 +579,6 @@
       "slug": "trento",
       "dropdown": [
         "Driver Car / Kombi",
-        "Driver E-Bike",
         "Driver Scooter"
       ],
       "postings": [
@@ -590,10 +589,9 @@
       ],
       "offered": [
         "Driver Car / Kombi",
-        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "open": true
+      "open": false
     },
     "coid:399": {
       "name": "Varese",
@@ -793,6 +791,6 @@
       "open": true
     }
   },
-  "last_check": "2026-09-29T02:30:13+00:00",
+  "last_check": "2026-09-29T09:01:36+00:00",
   "schema": 2
 }
