@@ -708,10 +708,12 @@
       "name": "Acilia",
       "slug": "acilia",
       "dropdown": [
+        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "postings": [],
       "offered": [
+        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "open": false
@@ -791,6 +793,6 @@
       "open": true
     }
   },
-  "last_check": "2026-10-01T07:52:32+00:00",
+  "last_check": "2026-10-01T15:32:13+00:00",
   "schema": 2
 }
