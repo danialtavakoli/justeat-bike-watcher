@@ -185,13 +185,11 @@
       "slug": "rome",
       "dropdown": [
         "Company Scooter",
-        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "postings": [],
       "offered": [
         "Company Scooter",
-        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "open": false
@@ -793,6 +791,6 @@
       "open": true
     }
   },
-  "last_check": "2026-10-04T12:04:36+00:00",
+  "last_check": "2026-10-04T16:46:34+00:00",
   "schema": 2
 }
