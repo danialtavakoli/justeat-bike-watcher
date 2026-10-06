@@ -642,15 +642,13 @@
       "name": "Lecce",
       "slug": "lecce",
       "dropdown": [
-        "Driver E-Bike",
         "Driver Scooter"
       ],
       "postings": [],
       "offered": [
-        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "open": true
+      "open": false
     },
     "coid:417": {
       "name": "Comuni Vesuviani",
@@ -789,6 +787,6 @@
       "open": true
     }
   },
-  "last_check": "2026-10-06T04:05:50+00:00",
+  "last_check": "2026-10-06T11:31:33+00:00",
   "schema": 2
 }
