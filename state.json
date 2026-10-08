@@ -200,12 +200,10 @@
       "name": "Bologna",
       "slug": "bologna",
       "dropdown": [
-        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "postings": [],
       "offered": [
-        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "open": false
@@ -787,6 +785,6 @@
       "open": true
     }
   },
-  "last_check": "2026-10-08T15:39:15+00:00",
+  "last_check": "2026-10-08T21:25:59+00:00",
   "schema": 2
 }
