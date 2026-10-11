@@ -25,7 +25,6 @@
       "name": "Brescia",
       "slug": "brescia",
       "dropdown": [
-        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "postings": [
@@ -44,7 +43,6 @@
       "name": "Verona",
       "slug": "verona",
       "dropdown": [
-        "Driver E-Bike",
         "Driver Scooter"
       ],
       "postings": [
@@ -54,10 +52,9 @@
         }
       ],
       "offered": [
-        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "open": true
+      "open": false
     },
     "coid:180": {
       "name": "Milan",
@@ -793,6 +790,6 @@
       "open": true
     }
   },
-  "last_check": "2026-10-10T22:15:00+00:00",
+  "last_check": "2026-10-11T01:13:05+00:00",
   "schema": 2
 }
