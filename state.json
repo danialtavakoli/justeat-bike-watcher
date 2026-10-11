@@ -1,6 +1,6 @@
 {
   "consecutive_failures": 0,
-  "last_heartbeat": "2026-10-10T12:56:26+00:00",
+  "last_heartbeat": "2026-10-11T13:20:15+00:00",
   "cities": {
     "coid:166": {
       "name": "Monza",
@@ -407,15 +407,13 @@
       "name": "Udine",
       "slug": "udine",
       "dropdown": [
-        "Driver E-Bike",
         "Driver Scooter"
       ],
       "postings": [],
       "offered": [
-        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "open": true
+      "open": false
     },
     "coid:349": {
       "name": "Ravenna",
@@ -598,7 +596,6 @@
       "name": "Varese",
       "slug": "varese",
       "dropdown": [
-        "Driver E-Bike",
         "Driver Scooter"
       ],
       "postings": [
@@ -608,10 +605,9 @@
         }
       ],
       "offered": [
-        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "open": true
+      "open": false
     },
     "coid:400": {
       "name": "Piacenza",
@@ -790,6 +786,6 @@
       "open": true
     }
   },
-  "last_check": "2026-10-11T07:05:56+00:00",
+  "last_check": "2026-10-11T14:10:29+00:00",
   "schema": 2
 }
