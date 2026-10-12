@@ -1,6 +1,6 @@
 {
   "consecutive_failures": 0,
-  "last_heartbeat": "2026-10-11T13:20:15+00:00",
+  "last_heartbeat": "2026-10-12T18:48:52+00:00",
   "cities": {
     "coid:166": {
       "name": "Monza",
@@ -25,6 +25,7 @@
       "name": "Brescia",
       "slug": "brescia",
       "dropdown": [
+        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "postings": [
@@ -43,6 +44,7 @@
       "name": "Verona",
       "slug": "verona",
       "dropdown": [
+        "Driver E-Bike",
         "Driver Scooter"
       ],
       "postings": [
@@ -52,9 +54,10 @@
         }
       ],
       "offered": [
+        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "open": false
+      "open": true
     },
     "coid:180": {
       "name": "Milan",
@@ -93,10 +96,12 @@
       "name": "Reggio Emilia",
       "slug": "reggio-emilia",
       "dropdown": [
+        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "postings": [],
       "offered": [
+        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "open": false
@@ -105,6 +110,7 @@
       "name": "Trieste",
       "slug": "trieste",
       "dropdown": [
+        "Driver E-Bike",
         "Driver Scooter"
       ],
       "postings": [
@@ -114,9 +120,10 @@
         }
       ],
       "offered": [
+        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "open": false
+      "open": true
     },
     "coid:187": {
       "name": "Rimini",
@@ -198,10 +205,12 @@
       "name": "Bologna",
       "slug": "bologna",
       "dropdown": [
+        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "postings": [],
       "offered": [
+        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "open": false
@@ -294,8 +303,7 @@
       "name": "Turin",
       "slug": "turin",
       "dropdown": [
-        "Driver Car / Kombi",
-        "Driver Scooter"
+        "Driver Car / Kombi"
       ],
       "postings": [
         {
@@ -304,8 +312,7 @@
         }
       ],
       "offered": [
-        "Driver Car / Kombi",
-        "Driver Scooter"
+        "Driver Car / Kombi"
       ],
       "open": false
     },
@@ -325,6 +332,7 @@
       "name": "Genoa",
       "slug": "genoa",
       "dropdown": [
+        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "postings": [
@@ -334,6 +342,7 @@
         }
       ],
       "offered": [
+        "Driver Car / Kombi",
         "Driver E-Bike",
         "Driver Scooter"
       ],
@@ -369,6 +378,7 @@
       "name": "Novara",
       "slug": "novara",
       "dropdown": [
+        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "postings": [
@@ -403,13 +413,15 @@
       "name": "Udine",
       "slug": "udine",
       "dropdown": [
+        "Driver E-Bike",
         "Driver Scooter"
       ],
       "postings": [],
       "offered": [
+        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "open": false
+      "open": true
     },
     "coid:349": {
       "name": "Ravenna",
@@ -573,6 +585,7 @@
       "name": "Trento",
       "slug": "trento",
       "dropdown": [
+        "Driver E-Bike",
         "Driver Scooter"
       ],
       "postings": [
@@ -582,14 +595,16 @@
         }
       ],
       "offered": [
+        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "open": false
+      "open": true
     },
     "coid:399": {
       "name": "Varese",
       "slug": "varese",
       "dropdown": [
+        "Driver E-Bike",
         "Driver Scooter"
       ],
       "postings": [
@@ -599,9 +614,10 @@
         }
       ],
       "offered": [
+        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "open": false
+      "open": true
     },
     "coid:400": {
       "name": "Piacenza",
@@ -780,6 +796,6 @@
       "open": true
     }
   },
-  "last_check": "2026-10-12T09:44:34+00:00",
+  "last_check": "2026-10-12T19:39:02+00:00",
   "schema": 2
 }
