@@ -93,12 +93,10 @@
       "name": "Reggio Emilia",
       "slug": "reggio-emilia",
       "dropdown": [
-        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "postings": [],
       "offered": [
-        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "open": false
@@ -467,15 +465,13 @@
       "name": "Forlì",
       "slug": "forli",
       "dropdown": [
-        "Driver E-Bike",
         "Driver Scooter"
       ],
       "postings": [],
       "offered": [
-        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "open": true
+      "open": false
     },
     "coid:373": {
       "name": "Mestre",
@@ -784,6 +780,6 @@
       "open": true
     }
   },
-  "last_check": "2026-10-12T02:27:21+00:00",
+  "last_check": "2026-10-12T09:44:34+00:00",
   "schema": 2
 }
