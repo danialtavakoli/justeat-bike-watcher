@@ -25,7 +25,6 @@
       "name": "Brescia",
       "slug": "brescia",
       "dropdown": [
-        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "postings": [
@@ -191,22 +190,26 @@
       "name": "Rome",
       "slug": "rome",
       "dropdown": [
+        "Driver E-Bike",
         "Driver Scooter"
       ],
       "postings": [],
       "offered": [
+        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "open": false
+      "open": true
     },
     "coid:193": {
       "name": "Bologna",
       "slug": "bologna",
       "dropdown": [
+        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "postings": [],
       "offered": [
+        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "open": false
@@ -598,7 +601,6 @@
       "name": "Varese",
       "slug": "varese",
       "dropdown": [
-        "Driver E-Bike",
         "Driver Scooter"
       ],
       "postings": [
@@ -608,10 +610,9 @@
         }
       ],
       "offered": [
-        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "open": true
+      "open": false
     },
     "coid:400": {
       "name": "Piacenza",
@@ -790,6 +791,6 @@
       "open": true
     }
   },
-  "last_check": "2026-10-13T09:07:16+00:00",
+  "last_check": "2026-10-13T17:09:06+00:00",
   "schema": 2
 }
