@@ -43,7 +43,6 @@
       "name": "Verona",
       "slug": "verona",
       "dropdown": [
-        "Driver E-Bike",
         "Driver Scooter"
       ],
       "postings": [
@@ -53,10 +52,9 @@
         }
       ],
       "offered": [
-        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "open": true
+      "open": false
     },
     "coid:180": {
       "name": "Milan",
@@ -408,15 +406,13 @@
       "name": "Udine",
       "slug": "udine",
       "dropdown": [
-        "Driver E-Bike",
         "Driver Scooter"
       ],
       "postings": [],
       "offered": [
-        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "open": true
+      "open": false
     },
     "coid:349": {
       "name": "Ravenna",
@@ -787,6 +783,6 @@
       "open": true
     }
   },
-  "last_check": "2026-10-14T06:47:39+00:00",
+  "last_check": "2026-10-14T12:30:18+00:00",
   "schema": 2
 }
