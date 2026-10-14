@@ -93,12 +93,10 @@
       "name": "Reggio Emilia",
       "slug": "reggio-emilia",
       "dropdown": [
-        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "postings": [],
       "offered": [
-        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "open": false
@@ -371,7 +369,6 @@
       "name": "Novara",
       "slug": "novara",
       "dropdown": [
-        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "postings": [
@@ -406,13 +403,15 @@
       "name": "Udine",
       "slug": "udine",
       "dropdown": [
+        "Driver E-Bike",
         "Driver Scooter"
       ],
       "postings": [],
       "offered": [
+        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "open": false
+      "open": true
     },
     "coid:349": {
       "name": "Ravenna",
@@ -783,6 +782,6 @@
       "open": true
     }
   },
-  "last_check": "2026-10-14T12:30:18+00:00",
+  "last_check": "2026-10-14T17:44:41+00:00",
   "schema": 2
 }
