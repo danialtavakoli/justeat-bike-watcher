@@ -186,15 +186,13 @@
       "name": "Rome",
       "slug": "rome",
       "dropdown": [
-        "Driver E-Bike",
         "Driver Scooter"
       ],
       "postings": [],
       "offered": [
-        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "open": true
+      "open": false
     },
     "coid:193": {
       "name": "Bologna",
@@ -784,6 +782,6 @@
       "open": true
     }
   },
-  "last_check": "2026-10-15T15:10:20+00:00",
+  "last_check": "2026-10-15T19:21:59+00:00",
   "schema": 2
 }
