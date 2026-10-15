@@ -403,15 +403,13 @@
       "name": "Udine",
       "slug": "udine",
       "dropdown": [
-        "Driver E-Bike",
         "Driver Scooter"
       ],
       "postings": [],
       "offered": [
-        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "open": true
+      "open": false
     },
     "coid:349": {
       "name": "Ravenna",
@@ -782,6 +780,6 @@
       "open": true
     }
   },
-  "last_check": "2026-10-15T04:53:04+00:00",
+  "last_check": "2026-10-15T10:09:08+00:00",
   "schema": 2
 }
