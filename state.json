@@ -321,6 +321,7 @@
       "name": "Genoa",
       "slug": "genoa",
       "dropdown": [
+        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "postings": [
@@ -330,6 +331,7 @@
         }
       ],
       "offered": [
+        "Driver Car / Kombi",
         "Driver E-Bike",
         "Driver Scooter"
       ],
@@ -449,13 +451,15 @@
       "name": "Salerno",
       "slug": "salerno",
       "dropdown": [
+        "Driver E-Bike",
         "Driver Scooter"
       ],
       "postings": [],
       "offered": [
+        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "open": false
+      "open": true
     },
     "coid:372": {
       "name": "Forlì",
@@ -777,6 +781,6 @@
       "open": true
     }
   },
-  "last_check": "2026-10-19T11:56:36+00:00",
+  "last_check": "2026-10-19T18:30:21+00:00",
   "schema": 2
 }
