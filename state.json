@@ -322,6 +322,7 @@
       "slug": "genoa",
       "dropdown": [
         "Driver Car / Kombi",
+        "Driver E-Bike",
         "Driver Scooter"
       ],
       "postings": [
@@ -335,7 +336,7 @@
         "Driver E-Bike",
         "Driver Scooter"
       ],
-      "open": false
+      "open": true
     },
     "coid:274": {
       "name": "Palermo",
@@ -781,6 +782,6 @@
       "open": true
     }
   },
-  "last_check": "2026-10-20T02:00:18+00:00",
+  "last_check": "2026-10-20T07:15:53+00:00",
   "schema": 2
 }
