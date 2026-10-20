@@ -79,13 +79,15 @@
       "name": "Parma",
       "slug": "parma",
       "dropdown": [
+        "Driver E-Bike",
         "Driver Scooter"
       ],
       "postings": [],
       "offered": [
+        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "open": false
+      "open": true
     },
     "coid:182": {
       "name": "Reggio Emilia",
@@ -147,14 +149,16 @@
       "slug": "la-spezia",
       "dropdown": [
         "Driver Car / Kombi",
+        "Driver E-Bike",
         "Driver Scooter"
       ],
       "postings": [],
       "offered": [
         "Driver Car / Kombi",
+        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "open": false
+      "open": true
     },
     "coid:189": {
       "name": "Florence",
@@ -322,7 +326,6 @@
       "slug": "genoa",
       "dropdown": [
         "Driver Car / Kombi",
-        "Driver E-Bike",
         "Driver Scooter"
       ],
       "postings": [
@@ -336,7 +339,7 @@
         "Driver E-Bike",
         "Driver Scooter"
       ],
-      "open": true
+      "open": false
     },
     "coid:274": {
       "name": "Palermo",
@@ -414,10 +417,12 @@
       "name": "Ravenna",
       "slug": "ravenna",
       "dropdown": [
+        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "postings": [],
       "offered": [
+        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "open": false
@@ -574,6 +579,7 @@
       "name": "Trento",
       "slug": "trento",
       "dropdown": [
+        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "postings": [
@@ -583,6 +589,7 @@
         }
       ],
       "offered": [
+        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "open": false
@@ -609,10 +616,12 @@
       "name": "Piacenza",
       "slug": "piacenza",
       "dropdown": [
+        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "postings": [],
       "offered": [
+        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "open": false
@@ -687,13 +696,17 @@
       "name": "Taranto",
       "slug": "taranto",
       "dropdown": [
+        "Driver Car / Kombi",
+        "Driver E-Bike",
         "Driver Scooter"
       ],
       "postings": [],
       "offered": [
+        "Driver Car / Kombi",
+        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "open": false
+      "open": true
     },
     "coid:593": {
       "name": "Acilia",
@@ -782,6 +795,6 @@
       "open": true
     }
   },
-  "last_check": "2026-10-20T07:15:53+00:00",
+  "last_check": "2026-10-20T12:48:51+00:00",
   "schema": 2
 }
