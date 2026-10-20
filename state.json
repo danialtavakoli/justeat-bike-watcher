@@ -105,7 +105,6 @@
       "name": "Trieste",
       "slug": "trieste",
       "dropdown": [
-        "Driver E-Bike",
         "Driver Scooter"
       ],
       "postings": [
@@ -115,10 +114,9 @@
         }
       ],
       "offered": [
-        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "open": true
+      "open": false
     },
     "coid:187": {
       "name": "Rimini",
@@ -797,6 +795,6 @@
       "open": true
     }
   },
-  "last_check": "2026-10-20T17:39:49+00:00",
+  "last_check": "2026-10-20T21:11:13+00:00",
   "schema": 2
 }
