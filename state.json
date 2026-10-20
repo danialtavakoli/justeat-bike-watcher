@@ -105,6 +105,7 @@
       "name": "Trieste",
       "slug": "trieste",
       "dropdown": [
+        "Driver E-Bike",
         "Driver Scooter"
       ],
       "postings": [
@@ -114,9 +115,10 @@
         }
       ],
       "offered": [
+        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "open": false
+      "open": true
     },
     "coid:187": {
       "name": "Rimini",
@@ -359,13 +361,15 @@
       "name": "Pescara",
       "slug": "pescara",
       "dropdown": [
+        "Driver E-Bike",
         "Driver Scooter"
       ],
       "postings": [],
       "offered": [
+        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "open": false
+      "open": true
     },
     "coid:346": {
       "name": "Novara",
@@ -457,15 +461,13 @@
       "name": "Salerno",
       "slug": "salerno",
       "dropdown": [
-        "Driver E-Bike",
         "Driver Scooter"
       ],
       "postings": [],
       "offered": [
-        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "open": true
+      "open": false
     },
     "coid:372": {
       "name": "Forlì",
@@ -795,6 +797,6 @@
       "open": true
     }
   },
-  "last_check": "2026-10-20T12:48:51+00:00",
+  "last_check": "2026-10-20T17:39:49+00:00",
   "schema": 2
 }
