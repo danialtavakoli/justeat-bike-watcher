@@ -431,13 +431,15 @@
       "name": "Prato",
       "slug": "prato",
       "dropdown": [
+        "Driver E-Bike",
         "Driver Scooter"
       ],
       "postings": [],
       "offered": [
+        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "open": false
+      "open": true
     },
     "coid:364": {
       "name": "Pavia",
@@ -793,6 +795,6 @@
       "open": true
     }
   },
-  "last_check": "2026-10-21T08:10:48+00:00",
+  "last_check": "2026-10-21T13:56:42+00:00",
   "schema": 2
 }
