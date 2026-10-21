@@ -359,15 +359,13 @@
       "name": "Pescara",
       "slug": "pescara",
       "dropdown": [
-        "Driver E-Bike",
         "Driver Scooter"
       ],
       "postings": [],
       "offered": [
-        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "open": true
+      "open": false
     },
     "coid:346": {
       "name": "Novara",
@@ -795,6 +793,6 @@
       "open": true
     }
   },
-  "last_check": "2026-10-21T02:43:49+00:00",
+  "last_check": "2026-10-21T08:10:48+00:00",
   "schema": 2
 }
