@@ -1,6 +1,6 @@
 {
   "consecutive_failures": 0,
-  "last_heartbeat": "2026-10-21T01:53:37+00:00",
+  "last_heartbeat": "2026-10-22T05:53:17+00:00",
   "cities": {
     "coid:166": {
       "name": "Monza",
@@ -136,13 +136,17 @@
       "name": "Modena",
       "slug": "modena",
       "dropdown": [
+        "Driver Car / Kombi",
+        "Driver E-Bike",
         "Driver Scooter"
       ],
       "postings": [],
       "offered": [
+        "Driver Car / Kombi",
+        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "open": false
+      "open": true
     },
     "coid:186": {
       "name": "La Spezia",
@@ -793,6 +797,6 @@
       "open": true
     }
   },
-  "last_check": "2026-10-22T01:21:37+00:00",
+  "last_check": "2026-10-22T06:43:27+00:00",
   "schema": 2
 }
