@@ -105,7 +105,6 @@
       "name": "Trieste",
       "slug": "trieste",
       "dropdown": [
-        "Driver E-Bike",
         "Driver Scooter"
       ],
       "postings": [
@@ -115,10 +114,9 @@
         }
       ],
       "offered": [
-        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "open": true
+      "open": false
     },
     "coid:187": {
       "name": "Rimini",
@@ -138,17 +136,13 @@
       "name": "Modena",
       "slug": "modena",
       "dropdown": [
-        "Driver Car / Kombi",
-        "Driver E-Bike",
         "Driver Scooter"
       ],
       "postings": [],
       "offered": [
-        "Driver Car / Kombi",
-        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "open": true
+      "open": false
     },
     "coid:186": {
       "name": "La Spezia",
@@ -194,10 +188,12 @@
       "name": "Rome",
       "slug": "rome",
       "dropdown": [
+        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "postings": [],
       "offered": [
+        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "open": false
@@ -331,7 +327,6 @@
       "name": "Genoa",
       "slug": "genoa",
       "dropdown": [
-        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "postings": [
@@ -341,7 +336,6 @@
         }
       ],
       "offered": [
-        "Driver Car / Kombi",
         "Driver E-Bike",
         "Driver Scooter"
       ],
@@ -365,21 +359,18 @@
       "name": "Pescara",
       "slug": "pescara",
       "dropdown": [
-        "Driver E-Bike",
         "Driver Scooter"
       ],
       "postings": [],
       "offered": [
-        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "open": true
+      "open": false
     },
     "coid:346": {
       "name": "Novara",
       "slug": "novara",
       "dropdown": [
-        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "postings": [
@@ -693,10 +684,12 @@
       "name": "Ostia",
       "slug": "ostia",
       "dropdown": [
+        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "postings": [],
       "offered": [
+        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "open": false
@@ -804,6 +797,6 @@
       "open": true
     }
   },
-  "last_check": "2026-10-22T12:19:57+00:00",
+  "last_check": "2026-10-22T16:50:16+00:00",
   "schema": 2
 }
