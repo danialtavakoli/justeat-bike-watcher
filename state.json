@@ -1,6 +1,6 @@
 {
   "consecutive_failures": 0,
-  "last_heartbeat": "2026-10-22T05:53:17+00:00",
+  "last_heartbeat": "2026-10-23T09:29:11+00:00",
   "cities": {
     "coid:166": {
       "name": "Monza",
@@ -149,16 +149,14 @@
       "slug": "la-spezia",
       "dropdown": [
         "Driver Car / Kombi",
-        "Driver E-Bike",
         "Driver Scooter"
       ],
       "postings": [],
       "offered": [
         "Driver Car / Kombi",
-        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "open": true
+      "open": false
     },
     "coid:189": {
       "name": "Florence",
@@ -797,6 +795,6 @@
       "open": true
     }
   },
-  "last_check": "2026-10-23T05:01:20+00:00",
+  "last_check": "2026-10-23T10:19:19+00:00",
   "schema": 2
 }
