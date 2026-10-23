@@ -699,16 +699,14 @@
       "slug": "taranto",
       "dropdown": [
         "Driver Car / Kombi",
-        "Driver E-Bike",
         "Driver Scooter"
       ],
       "postings": [],
       "offered": [
         "Driver Car / Kombi",
-        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "open": true
+      "open": false
     },
     "coid:593": {
       "name": "Acilia",
@@ -799,6 +797,6 @@
       "open": true
     }
   },
-  "last_check": "2026-10-23T15:12:43+00:00",
+  "last_check": "2026-10-23T19:27:53+00:00",
   "schema": 2
 }
