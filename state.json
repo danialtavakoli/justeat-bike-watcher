@@ -136,10 +136,12 @@
       "name": "Modena",
       "slug": "modena",
       "dropdown": [
+        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "postings": [],
       "offered": [
+        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "open": false
@@ -712,10 +714,12 @@
       "name": "Acilia",
       "slug": "acilia",
       "dropdown": [
+        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "postings": [],
       "offered": [
+        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "open": false
@@ -795,6 +799,6 @@
       "open": true
     }
   },
-  "last_check": "2026-10-23T10:19:19+00:00",
+  "last_check": "2026-10-23T15:12:43+00:00",
   "schema": 2
 }
