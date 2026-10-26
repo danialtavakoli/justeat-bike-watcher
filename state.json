@@ -1,6 +1,6 @@
 {
   "consecutive_failures": 0,
-  "last_heartbeat": "2026-10-25T10:03:03+00:00",
+  "last_heartbeat": "2026-10-26T15:01:05+00:00",
   "cities": {
     "coid:166": {
       "name": "Monza",
@@ -25,6 +25,7 @@
       "name": "Brescia",
       "slug": "brescia",
       "dropdown": [
+        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "postings": [
@@ -188,13 +189,17 @@
       "name": "Rome",
       "slug": "rome",
       "dropdown": [
+        "Driver Car / Kombi",
+        "Driver E-Bike",
         "Driver Scooter"
       ],
       "postings": [],
       "offered": [
+        "Driver Car / Kombi",
+        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "open": false
+      "open": true
     },
     "coid:193": {
       "name": "Bologna",
@@ -795,6 +800,6 @@
       "open": true
     }
   },
-  "last_check": "2026-10-26T08:27:16+00:00",
+  "last_check": "2026-10-26T15:51:36+00:00",
   "schema": 2
 }
