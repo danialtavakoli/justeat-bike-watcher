@@ -190,16 +190,14 @@
       "slug": "rome",
       "dropdown": [
         "Driver Car / Kombi",
-        "Driver E-Bike",
         "Driver Scooter"
       ],
       "postings": [],
       "offered": [
         "Driver Car / Kombi",
-        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "open": true
+      "open": false
     },
     "coid:193": {
       "name": "Bologna",
@@ -800,6 +798,6 @@
       "open": true
     }
   },
-  "last_check": "2026-10-26T15:51:36+00:00",
+  "last_check": "2026-10-26T21:31:04+00:00",
   "schema": 2
 }
