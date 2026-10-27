@@ -189,12 +189,10 @@
       "name": "Rome",
       "slug": "rome",
       "dropdown": [
-        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "postings": [],
       "offered": [
-        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "open": false
@@ -360,13 +358,15 @@
       "name": "Pescara",
       "slug": "pescara",
       "dropdown": [
+        "Driver E-Bike",
         "Driver Scooter"
       ],
       "postings": [],
       "offered": [
+        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "open": false
+      "open": true
     },
     "coid:346": {
       "name": "Novara",
@@ -798,6 +798,6 @@
       "open": true
     }
   },
-  "last_check": "2026-10-27T06:16:48+00:00",
+  "last_check": "2026-10-27T11:41:05+00:00",
   "schema": 2
 }
