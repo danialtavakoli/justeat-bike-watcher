@@ -23,7 +23,6 @@
       "name": "Brescia",
       "slug": "brescia",
       "dropdown": [
-        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "postings": [
@@ -78,15 +77,13 @@
       "name": "Parma",
       "slug": "parma",
       "dropdown": [
-        "Driver E-Bike",
         "Driver Scooter"
       ],
       "postings": [],
       "offered": [
-        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "open": true
+      "open": false
     },
     "coid:182": {
       "name": "Reggio Emilia",
@@ -295,7 +292,7 @@
       "name": "Turin",
       "slug": "turin",
       "dropdown": [
-        "Driver Car / Kombi"
+        "Driver Scooter"
       ],
       "postings": [
         {
@@ -304,7 +301,8 @@
         }
       ],
       "offered": [
-        "Driver Car / Kombi"
+        "Driver Car / Kombi",
+        "Driver Scooter"
       ],
       "open": false
     },
@@ -356,15 +354,13 @@
       "name": "Pescara",
       "slug": "pescara",
       "dropdown": [
-        "Driver E-Bike",
         "Driver Scooter"
       ],
       "postings": [],
       "offered": [
-        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "open": true
+      "open": false
     },
     "coid:346": {
       "name": "Novara",
@@ -682,14 +678,16 @@
       "slug": "ostia",
       "dropdown": [
         "Driver Car / Kombi",
+        "Driver E-Bike",
         "Driver Scooter"
       ],
       "postings": [],
       "offered": [
         "Driver Car / Kombi",
+        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "open": false
+      "open": true
     },
     "coid:590": {
       "name": "Taranto",
@@ -794,6 +792,6 @@
       "open": true
     }
   },
-  "last_check": "2026-10-28T06:57:37+00:00",
+  "last_check": "2026-10-28T14:15:02+00:00",
   "schema": 2
 }
