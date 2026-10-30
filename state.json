@@ -101,7 +101,6 @@
       "name": "Trieste",
       "slug": "trieste",
       "dropdown": [
-        "Driver E-Bike",
         "Driver Scooter"
       ],
       "postings": [
@@ -111,10 +110,9 @@
         }
       ],
       "offered": [
-        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "open": true
+      "open": false
     },
     "coid:187": {
       "name": "Rimini",
@@ -682,16 +680,14 @@
       "slug": "ostia",
       "dropdown": [
         "Driver Car / Kombi",
-        "Driver E-Bike",
         "Driver Scooter"
       ],
       "postings": [],
       "offered": [
         "Driver Car / Kombi",
-        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "open": true
+      "open": false
     },
     "coid:590": {
       "name": "Taranto",
@@ -796,6 +792,6 @@
       "open": true
     }
   },
-  "last_check": "2026-10-30T16:03:51+00:00",
+  "last_check": "2026-10-30T20:52:00+00:00",
   "schema": 2
 }
