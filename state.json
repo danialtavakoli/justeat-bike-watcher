@@ -1,6 +1,6 @@
 {
   "consecutive_failures": 0,
-  "last_heartbeat": "2026-10-29T21:40:57+00:00",
+  "last_heartbeat": "2026-10-30T23:58:28+00:00",
   "cities": {
     "coid:166": {
       "name": "Monza",
@@ -792,6 +792,6 @@
       "open": true
     }
   },
-  "last_check": "2026-10-30T20:52:00+00:00",
+  "last_check": "2026-10-31T00:48:42+00:00",
   "schema": 2
 }
