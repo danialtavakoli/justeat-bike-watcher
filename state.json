@@ -184,13 +184,15 @@
       "name": "Rome",
       "slug": "rome",
       "dropdown": [
+        "Driver E-Bike",
         "Driver Scooter"
       ],
       "postings": [],
       "offered": [
+        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "open": false
+      "open": true
     },
     "coid:193": {
       "name": "Bologna",
@@ -412,10 +414,12 @@
       "name": "Ravenna",
       "slug": "ravenna",
       "dropdown": [
+        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "postings": [],
       "offered": [
+        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "open": false
@@ -675,13 +679,11 @@
       "name": "Ostia",
       "slug": "ostia",
       "dropdown": [
-        "Driver Car / Kombi",
-        "Driver Scooter"
+        "Driver Car / Kombi"
       ],
       "postings": [],
       "offered": [
-        "Driver Car / Kombi",
-        "Driver Scooter"
+        "Driver Car / Kombi"
       ],
       "open": false
     },
@@ -788,6 +790,6 @@
       "open": true
     }
   },
-  "last_check": "2026-11-05T08:03:24+00:00",
+  "last_check": "2026-11-05T16:33:02+00:00",
   "schema": 2
 }
