@@ -1,6 +1,6 @@
 {
   "consecutive_failures": 0,
-  "last_heartbeat": "2026-11-04T02:35:38+00:00",
+  "last_heartbeat": "2026-11-05T07:12:51+00:00",
   "cities": {
     "coid:166": {
       "name": "Monza",
@@ -184,15 +184,13 @@
       "name": "Rome",
       "slug": "rome",
       "dropdown": [
-        "Driver E-Bike",
         "Driver Scooter"
       ],
       "postings": [],
       "offered": [
-        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "open": true
+      "open": false
     },
     "coid:193": {
       "name": "Bologna",
@@ -790,6 +788,6 @@
       "open": true
     }
   },
-  "last_check": "2026-11-04T19:21:34+00:00",
+  "last_check": "2026-11-05T08:03:24+00:00",
   "schema": 2
 }
