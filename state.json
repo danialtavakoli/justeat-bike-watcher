@@ -294,6 +294,7 @@
       "name": "Turin",
       "slug": "turin",
       "dropdown": [
+        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "postings": [
@@ -415,14 +416,16 @@
       "slug": "ravenna",
       "dropdown": [
         "Driver Car / Kombi",
+        "Driver E-Bike",
         "Driver Scooter"
       ],
       "postings": [],
       "offered": [
         "Driver Car / Kombi",
+        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "open": false
+      "open": true
     },
     "coid:363": {
       "name": "Prato",
@@ -796,6 +799,6 @@
       "open": true
     }
   },
-  "last_check": "2026-11-10T03:29:53+00:00",
+  "last_check": "2026-11-10T11:44:37+00:00",
   "schema": 2
 }
