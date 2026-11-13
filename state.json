@@ -23,7 +23,6 @@
       "name": "Brescia",
       "slug": "brescia",
       "dropdown": [
-        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "postings": [
@@ -102,7 +101,6 @@
       "name": "Trieste",
       "slug": "trieste",
       "dropdown": [
-        "Driver E-Bike",
         "Driver Scooter"
       ],
       "postings": [
@@ -112,10 +110,9 @@
         }
       ],
       "offered": [
-        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "open": true
+      "open": false
     },
     "coid:187": {
       "name": "Rimini",
@@ -335,7 +332,6 @@
       "name": "Genoa",
       "slug": "genoa",
       "dropdown": [
-        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "postings": [
@@ -345,7 +341,6 @@
         }
       ],
       "offered": [
-        "Driver Car / Kombi",
         "Driver E-Bike",
         "Driver Scooter"
       ],
@@ -810,6 +805,6 @@
       "open": true
     }
   },
-  "last_check": "2026-11-13T16:27:34+00:00",
+  "last_check": "2026-11-13T22:41:20+00:00",
   "schema": 2
 }
