@@ -1,6 +1,6 @@
 {
   "consecutive_failures": 0,
-  "last_heartbeat": "2026-11-12T02:25:26+00:00",
+  "last_heartbeat": "2026-11-13T07:05:25+00:00",
   "cities": {
     "coid:166": {
       "name": "Monza",
@@ -679,16 +679,14 @@
       "slug": "ostia",
       "dropdown": [
         "Driver Car / Kombi",
-        "Driver E-Bike",
         "Driver Scooter"
       ],
       "postings": [],
       "offered": [
         "Driver Car / Kombi",
-        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "open": true
+      "open": false
     },
     "coid:590": {
       "name": "Taranto",
@@ -791,6 +789,6 @@
       "open": true
     }
   },
-  "last_check": "2026-11-13T00:50:28+00:00",
+  "last_check": "2026-11-13T07:55:34+00:00",
   "schema": 2
 }
