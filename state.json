@@ -102,6 +102,7 @@
       "name": "Trieste",
       "slug": "trieste",
       "dropdown": [
+        "Driver E-Bike",
         "Driver Scooter"
       ],
       "postings": [
@@ -111,9 +112,10 @@
         }
       ],
       "offered": [
+        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "open": false
+      "open": true
     },
     "coid:187": {
       "name": "Rimini",
@@ -187,7 +189,16 @@
       "dropdown": [
         "Driver Scooter"
       ],
-      "postings": [],
+      "postings": [
+        {
+          "vehicle": "Driver Scooter",
+          "shift": "Friday and weekend evenings"
+        },
+        {
+          "vehicle": "Driver Scooter",
+          "shift": "Full week and weekends"
+        }
+      ],
       "offered": [
         "Driver Scooter"
       ],
@@ -255,10 +266,12 @@
       "name": "Ferrara",
       "slug": "ferrara",
       "dropdown": [
+        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "postings": [],
       "offered": [
+        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "open": false
@@ -322,6 +335,7 @@
       "name": "Genoa",
       "slug": "genoa",
       "dropdown": [
+        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "postings": [
@@ -331,6 +345,7 @@
         }
       ],
       "offered": [
+        "Driver Car / Kombi",
         "Driver E-Bike",
         "Driver Scooter"
       ],
@@ -466,13 +481,17 @@
       "name": "Forlì",
       "slug": "forli",
       "dropdown": [
+        "Driver Car / Kombi",
+        "Driver E-Bike",
         "Driver Scooter"
       ],
       "postings": [],
       "offered": [
+        "Driver Car / Kombi",
+        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "open": false
+      "open": true
     },
     "coid:373": {
       "name": "Mestre",
@@ -679,14 +698,16 @@
       "slug": "ostia",
       "dropdown": [
         "Driver Car / Kombi",
+        "Driver E-Bike",
         "Driver Scooter"
       ],
       "postings": [],
       "offered": [
         "Driver Car / Kombi",
+        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "open": false
+      "open": true
     },
     "coid:590": {
       "name": "Taranto",
@@ -789,6 +810,6 @@
       "open": true
     }
   },
-  "last_check": "2026-11-13T07:55:34+00:00",
+  "last_check": "2026-11-13T16:27:34+00:00",
   "schema": 2
 }
