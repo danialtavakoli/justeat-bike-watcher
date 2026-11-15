@@ -1,6 +1,6 @@
 {
   "consecutive_failures": 0,
-  "last_heartbeat": "2026-11-14T09:16:54+00:00",
+  "last_heartbeat": "2026-11-15T15:30:16+00:00",
   "cities": {
     "coid:166": {
       "name": "Monza",
@@ -477,16 +477,14 @@
       "slug": "forli",
       "dropdown": [
         "Driver Car / Kombi",
-        "Driver E-Bike",
         "Driver Scooter"
       ],
       "postings": [],
       "offered": [
         "Driver Car / Kombi",
-        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "open": true
+      "open": false
     },
     "coid:373": {
       "name": "Mestre",
@@ -805,6 +803,6 @@
       "open": true
     }
   },
-  "last_check": "2026-11-15T08:31:33+00:00",
+  "last_check": "2026-11-15T16:20:26+00:00",
   "schema": 2
 }
