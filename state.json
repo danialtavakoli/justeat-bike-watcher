@@ -331,7 +331,6 @@
       "name": "Genoa",
       "slug": "genoa",
       "dropdown": [
-        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "postings": [
@@ -341,7 +340,6 @@
         }
       ],
       "offered": [
-        "Driver Car / Kombi",
         "Driver E-Bike",
         "Driver Scooter"
       ],
@@ -802,6 +800,6 @@
       "open": true
     }
   },
-  "last_check": "2026-11-16T19:02:06+00:00",
+  "last_check": "2026-11-17T02:48:48+00:00",
   "schema": 2
 }
