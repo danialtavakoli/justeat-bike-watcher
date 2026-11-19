@@ -399,15 +399,13 @@
       "name": "Livorno",
       "slug": "livorno",
       "dropdown": [
-        "Driver E-Bike",
         "Driver Scooter"
       ],
       "postings": [],
       "offered": [
-        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "open": true
+      "open": false
     },
     "coid:348": {
       "name": "Udine",
@@ -806,6 +804,6 @@
       "open": true
     }
   },
-  "last_check": "2026-11-18T20:08:00+00:00",
+  "last_check": "2026-11-19T02:13:17+00:00",
   "schema": 2
 }
