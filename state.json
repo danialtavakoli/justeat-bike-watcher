@@ -423,12 +423,10 @@
       "name": "Ravenna",
       "slug": "ravenna",
       "dropdown": [
-        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "postings": [],
       "offered": [
-        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "open": false
@@ -808,6 +806,6 @@
       "open": true
     }
   },
-  "last_check": "2026-11-20T01:57:02+00:00",
+  "last_check": "2026-11-20T09:50:00+00:00",
   "schema": 2
 }
