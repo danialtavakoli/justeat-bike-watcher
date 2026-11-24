@@ -1,6 +1,6 @@
 {
   "consecutive_failures": 0,
-  "last_heartbeat": "2026-11-23T12:16:03+00:00",
+  "last_heartbeat": "2026-11-24T20:47:32+00:00",
   "cities": {
     "coid:166": {
       "name": "Monza",
@@ -23,16 +23,16 @@
       "name": "Brescia",
       "slug": "brescia",
       "dropdown": [
-        "Driver Car / Kombi"
+        "Driver Scooter"
       ],
       "postings": [
         {
-          "vehicle": "Driver Car / Kombi",
+          "vehicle": "Driver Scooter",
           "shift": "Friday and weekend evenings"
         }
       ],
       "offered": [
-        "Driver Car / Kombi"
+        "Driver Scooter"
       ],
       "open": false
     },
@@ -63,6 +63,10 @@
       "postings": [
         {
           "vehicle": "Driver Scooter",
+          "shift": "Friday and weekend evenings"
+        },
+        {
+          "vehicle": "Driver Car / Kombi",
           "shift": "Friday and weekend evenings"
         }
       ],
@@ -146,16 +150,14 @@
       "slug": "la-spezia",
       "dropdown": [
         "Driver Car / Kombi",
-        "Driver E-Bike",
         "Driver Scooter"
       ],
       "postings": [],
       "offered": [
         "Driver Car / Kombi",
-        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "open": true
+      "open": false
     },
     "coid:189": {
       "name": "Florence",
@@ -400,10 +402,12 @@
       "name": "Livorno",
       "slug": "livorno",
       "dropdown": [
+        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "postings": [],
       "offered": [
+        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "open": false
@@ -466,13 +470,15 @@
       "name": "Salerno",
       "slug": "salerno",
       "dropdown": [
+        "Driver E-Bike",
         "Driver Scooter"
       ],
       "postings": [],
       "offered": [
+        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "open": false
+      "open": true
     },
     "coid:372": {
       "name": "Forlì",
@@ -810,6 +816,6 @@
       "open": true
     }
   },
-  "last_check": "2026-11-24T11:08:59+00:00",
+  "last_check": "2026-11-24T21:37:47+00:00",
   "schema": 2
 }
