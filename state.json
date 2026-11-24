@@ -377,6 +377,7 @@
       "name": "Novara",
       "slug": "novara",
       "dropdown": [
+        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "postings": [
@@ -423,10 +424,12 @@
       "name": "Ravenna",
       "slug": "ravenna",
       "dropdown": [
+        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "postings": [],
       "offered": [
+        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "open": false
@@ -548,6 +551,7 @@
       "name": "Como",
       "slug": "como",
       "dropdown": [
+        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "postings": [
@@ -806,6 +810,6 @@
       "open": true
     }
   },
-  "last_check": "2026-11-23T13:06:10+00:00",
+  "last_check": "2026-11-24T01:05:13+00:00",
   "schema": 2
 }
