@@ -187,6 +187,7 @@
       "name": "Rome",
       "slug": "rome",
       "dropdown": [
+        "Driver E-Bike",
         "Driver Scooter"
       ],
       "postings": [
@@ -200,9 +201,10 @@
         }
       ],
       "offered": [
+        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "open": false
+      "open": true
     },
     "coid:193": {
       "name": "Bologna",
@@ -470,13 +472,15 @@
       "name": "Salerno",
       "slug": "salerno",
       "dropdown": [
+        "Driver E-Bike",
         "Driver Scooter"
       ],
       "postings": [],
       "offered": [
+        "Driver E-Bike",
         "Driver Scooter"
       ],
-      "open": false
+      "open": true
     },
     "coid:372": {
       "name": "Forlì",
@@ -814,6 +818,6 @@
       "open": true
     }
   },
-  "last_check": "2026-11-25T04:51:44+00:00",
+  "last_check": "2026-11-25T15:40:00+00:00",
   "schema": 2
 }
