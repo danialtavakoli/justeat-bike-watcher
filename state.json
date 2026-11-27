@@ -1,6 +1,6 @@
 {
   "consecutive_failures": 0,
-  "last_heartbeat": "2026-11-25T23:30:34+00:00",
+  "last_heartbeat": "2026-11-27T01:52:46+00:00",
   "cities": {
     "coid:166": {
       "name": "Monza",
@@ -428,12 +428,10 @@
       "name": "Ravenna",
       "slug": "ravenna",
       "dropdown": [
-        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "postings": [],
       "offered": [
-        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "open": false
@@ -814,6 +812,6 @@
       "open": true
     }
   },
-  "last_check": "2026-11-26T19:06:00+00:00",
+  "last_check": "2026-11-27T02:42:55+00:00",
   "schema": 2
 }
