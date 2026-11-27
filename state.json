@@ -23,15 +23,21 @@
       "name": "Brescia",
       "slug": "brescia",
       "dropdown": [
+        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "postings": [
         {
           "vehicle": "Driver Scooter",
           "shift": "Friday and weekend evenings"
+        },
+        {
+          "vehicle": "Driver Car / Kombi",
+          "shift": "Friday and weekend evenings"
         }
       ],
       "offered": [
+        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "open": false
@@ -208,10 +214,21 @@
       "name": "Bologna",
       "slug": "bologna",
       "dropdown": [
+        "Driver Car / Kombi",
         "Driver Scooter"
       ],
-      "postings": [],
+      "postings": [
+        {
+          "vehicle": "Driver Scooter",
+          "shift": "Friday and weekend evenings"
+        },
+        {
+          "vehicle": "Driver Car / Kombi",
+          "shift": "Friday and weekend evenings"
+        }
+      ],
       "offered": [
+        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "open": false
@@ -339,12 +356,11 @@
       ],
       "postings": [
         {
-          "vehicle": "Driver E-Bike",
+          "vehicle": "Driver Scooter",
           "shift": "Friday and weekend evenings"
         }
       ],
       "offered": [
-        "Driver E-Bike",
         "Driver Scooter"
       ],
       "open": false
@@ -428,10 +444,12 @@
       "name": "Ravenna",
       "slug": "ravenna",
       "dropdown": [
+        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "postings": [],
       "offered": [
+        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "open": false
@@ -812,6 +830,6 @@
       "open": true
     }
   },
-  "last_check": "2026-11-27T11:31:25+00:00",
+  "last_check": "2026-11-27T20:41:17+00:00",
   "schema": 2
 }
