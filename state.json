@@ -214,7 +214,6 @@
       "name": "Bologna",
       "slug": "bologna",
       "dropdown": [
-        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "postings": [
@@ -571,7 +570,6 @@
       "name": "Como",
       "slug": "como",
       "dropdown": [
-        "Driver Car / Kombi",
         "Driver Scooter"
       ],
       "postings": [
@@ -830,6 +828,6 @@
       "open": true
     }
   },
-  "last_check": "2026-11-28T12:20:26+00:00",
+  "last_check": "2026-11-28T20:36:52+00:00",
   "schema": 2
 }
